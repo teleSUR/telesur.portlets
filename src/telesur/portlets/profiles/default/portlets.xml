@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<portlets>
+
+ <!-- Portlet type registrations -->
+
+ <portlet
+   addview="telesur.portlets.RecommendedContent"
+   title="Recommended Content"
+   description="A portlet that lists recommended content"
+   />
+
+ <portlet
+   addview="telesur.portlets.MostCommentedContent"
+   title="Most Commented Content"
+   description="A portlet that lists most commented content"
+   />
+
+</portlets>

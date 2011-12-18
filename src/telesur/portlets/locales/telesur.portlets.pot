@@ -1,0 +1,103 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2011-12-18 01:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: telesur.portlets\n"
+
+#: telesur/portlets/mostcommentedcontent.pt:27
+#: telesur/portlets/recommendedcontent.pt:27
+msgid "${comments} comments."
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:52
+#: telesur/portlets/recommendedcontent.py:52
+msgid "Access token"
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:53
+#: telesur/portlets/recommendedcontent.py:53
+msgid "Access token to make requests"
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:68
+msgid "Choices: 1h, 6h, 12h, 1d, 7d, 30d, 90d"
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:40
+#: telesur/portlets/recommendedcontent.py:40
+msgid "Consumer Key"
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:47
+#: telesur/portlets/recommendedcontent.py:47
+msgid "Consumer Secret"
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:56
+#: telesur/portlets/recommendedcontent.py:56
+msgid "Forum"
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:36
+#: telesur/portlets/recommendedcontent.py:36
+msgid "Header"
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:67
+msgid "Interval"
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:62
+#: telesur/portlets/recommendedcontent.py:61
+msgid "Maximum results"
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:114
+msgid "Most Commented Content"
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:41
+#: telesur/portlets/recommendedcontent.py:41
+msgid "Public key for your application. You need to create an app here: http://disqus.com/api/applications"
+msgstr ""
+
+#: telesur/portlets/recommendedcontent.py:105
+msgid "Recommended Content"
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:48
+#: telesur/portlets/recommendedcontent.py:48
+msgid "Secret key for your application."
+msgstr ""
+
+#: telesur/portlets/recommendedcontent.py:57
+msgid "Specify the forum you wish to obtain recommended content from. "
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:57
+msgid "Specify the forum you wish to obtain the most commented content from."
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:37
+#: telesur/portlets/recommendedcontent.py:37
+msgid "The header for the portlet. Leave empty for none."
+msgstr ""
+
+#: telesur/portlets/mostcommentedcontent.py:63
+#: telesur/portlets/recommendedcontent.py:62
+msgid "The maximum results number."
+msgstr ""
+

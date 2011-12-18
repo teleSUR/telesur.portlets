@@ -1,0 +1,50 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="telesur.portlets">
+
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <i18n:registerTranslations directory="locales" />
+    
+    <genericsetup:registerProfile
+       name="default"
+       title="TeleSUR Portlets"
+       directory="profiles/default"
+       description="Aqui se crearan portlets a utilizar en el sitio de TeleSUR"
+       provides="Products.GenericSetup.interfaces.EXTENSION"
+       />
+
+     <!-- Register the portlet -->
+
+     <!-- If the portlet has no configurable parameters, you can remove
+          the EditForm declaration in mostcommentedcontent.py and delete
+          the 'editview' attribute from this statement.
+       -->
+
+     <plone:portlet
+         name="telesur.portlets.MostCommentedContent"
+         interface=".mostcommentedcontent.IMostCommentedContent"
+         assignment=".mostcommentedcontent.Assignment"
+         view_permission="zope2.View"
+         edit_permission="cmf.ManagePortal"
+         renderer=".mostcommentedcontent.Renderer"
+         addview=".mostcommentedcontent.AddForm"
+         editview=".mostcommentedcontent.EditForm"
+         />
+
+     <plone:portlet
+         name="telesur.portlets.RecommendedContent"
+         interface=".recommendedcontent.IRecommendedContent"
+         assignment=".recommendedcontent.Assignment"
+         view_permission="zope2.View"
+         edit_permission="cmf.ManagePortal"
+         renderer=".recommendedcontent.Renderer"
+         addview=".recommendedcontent.AddForm"
+         editview=".recommendedcontent.EditForm"
+         />
+         
+</configure>
