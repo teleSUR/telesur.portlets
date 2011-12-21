@@ -1,4 +1,4 @@
-<dl class="portlet addNewsPortlet"
+<dl class="portlet utilLinks"
     i18n:domain="telesur.portlets">
 
     <!--<dt class="portletHeader" tal:condition="view/getHeader">
@@ -9,13 +9,19 @@
 
     <dd class="portletItem"
         tal:define="portal_url context/@@plone_portal_state/portal_url;">
-        <div class="content">
+        <div class="link-noticias">
             <a href="#"
                tal:attributes="href string:${portal_url}/articulos/++add++collective.nitf.content">
                Agregar noticia
             </a>
-
         </div>
-
+        
+        <div class="link-encuestas">
+            <a href="#"
+               tal:attributes="href string:${portal_url}/encuestas/++add++collective.polls.poll">
+               Agregar encuesta
+            </a>
+        </div>
+        
     </dd>
 </dl>

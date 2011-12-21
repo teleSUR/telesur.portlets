@@ -8,7 +8,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from telesur.portlets import _
 
 
-class IAddNews(IPortletDataProvider):
+class IUtilLinks(IPortletDataProvider):
     """A portlet
 
     It inherits from IPortletDataProvider because for this portlet, the
@@ -33,7 +33,7 @@ class Assignment(base.Assignment):
     with columns.
     """
 
-    implements(IAddNews)
+    implements(IUtilLinks)
 
     def __init__(self):
         pass
@@ -44,7 +44,7 @@ class Assignment(base.Assignment):
         """This property is used to give the title of the portlet in the
         "manage portlets" screen.
         """
-        return _(u"Add news")
+        return _(u"Util links")
 
 
 class Renderer(base.Renderer):
@@ -55,7 +55,7 @@ class Renderer(base.Renderer):
     of this class. Other methods can be added and referenced in the template.
     """
 
-    render = ViewPageTemplateFile('addnews.pt')
+    render = ViewPageTemplateFile('utillinks.pt')
 
 class AddForm(base.NullAddForm):
     """Portlet add form.

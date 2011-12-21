@@ -16,9 +16,9 @@
    />
 
  <portlet
-   addview="telesur.portlets.AddNews"
-   title="Add news"
-   description="A portlet with a link to add news"
+   addview="telesur.portlets.UtilLinks"
+   title="Util links"
+   description="A portlet with several util links"
    />
 
    

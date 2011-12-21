@@ -48,12 +48,12 @@
          />
 
      <plone:portlet
-         name="telesur.portlets.AddNews"
-         interface=".addnews.IAddNews"
-         assignment=".addnews.Assignment"
+         name="telesur.portlets.UtilLinks"
+         interface=".utillinks.IUtilLinks"
+         assignment=".utillinks.Assignment"
          view_permission="zope2.View"
-         renderer=".addnews.Renderer"
-         addview=".addnews.AddForm"
+         renderer=".utillinks.Renderer"
+         addview=".utillinks.AddForm"
          />
          
 </configure>
