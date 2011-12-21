@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-12-21 16:59+0000\n"
+"POT-Creation-Date: 2011-12-21 17:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,10 +30,6 @@ msgstr ""
 #: telesur/portlets/mostcommentedcontent.py:53
 #: telesur/portlets/recommendedcontent.py:53
 msgid "Access token to make requests"
-msgstr ""
-
-#: telesur/portlets/addnews.py:47
-msgid "Add news"
 msgstr ""
 
 #: telesur/portlets/mostcommentedcontent.py:68
@@ -103,5 +99,9 @@ msgstr ""
 #: telesur/portlets/mostcommentedcontent.py:63
 #: telesur/portlets/recommendedcontent.py:62
 msgid "The maximum results number."
+msgstr ""
+
+#: telesur/portlets/utillinks.py:47
+msgid "Util links"
 msgstr ""
 
