@@ -15,4 +15,11 @@
    description="A portlet that lists most commented content"
    />
 
+ <portlet
+   addview="telesur.portlets.AddNews"
+   title="Add news"
+   description="A portlet with a link to add news"
+   />
+
+   
 </portlets>

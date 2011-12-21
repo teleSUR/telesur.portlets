@@ -46,5 +46,14 @@
          addview=".recommendedcontent.AddForm"
          editview=".recommendedcontent.EditForm"
          />
+
+     <plone:portlet
+         name="telesur.portlets.AddNews"
+         interface=".addnews.IAddNews"
+         assignment=".addnews.Assignment"
+         view_permission="zope2.View"
+         renderer=".addnews.Renderer"
+         addview=".addnews.AddForm"
+         />
          
 </configure>

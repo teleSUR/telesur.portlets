@@ -1,0 +1,21 @@
+<dl class="portlet addNewsPortlet"
+    i18n:domain="telesur.portlets">
+
+    <!--<dt class="portletHeader" tal:condition="view/getHeader">
+        <span class="portletTopLeft"></span>
+        <span tal:content="view/getHeader" />
+        <span class="portletTopRight"></span>
+    </dt>-->
+
+    <dd class="portletItem"
+        tal:define="portal_url context/@@plone_portal_state/portal_url;">
+        <div class="content">
+            <a href="#"
+               tal:attributes="href string:${portal_url}/articulos/++add++collective.nitf.content">
+               Agregar noticia
+            </a>
+
+        </div>
+
+    </dd>
+</dl>
