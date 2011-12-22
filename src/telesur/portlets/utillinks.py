@@ -1,9 +1,12 @@
 from zope.interface import implements
+from Products.CMFCore.utils import getToolByName
 
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.portlets import base
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
+from zope.security import checkPermission
 
 from telesur.portlets import _
 
@@ -38,7 +41,6 @@ class Assignment(base.Assignment):
     def __init__(self):
         pass
 
-
     @property
     def title(self):
         """This property is used to give the title of the portlet in the
@@ -57,10 +59,35 @@ class Renderer(base.Renderer):
 
     render = ViewPageTemplateFile('utillinks.pt')
 
+    def _checkPermInFolder(self, perm, folder_id):
+        portal = getToolByName(self.context, 'portal_url').getPortalObject()
+        try:
+            folder = portal[folder_id]
+        except KeyError:
+            folder = None
+
+        if folder:
+            can_add = checkPermission(perm, folder)
+        else:
+            can_add = False
+
+        return can_add
+
+    def canAddNews(self):
+        can_add = self._checkPermInFolder('collective.nitf.AddNewsArticle',
+                                          'articulos')
+
+        return can_add
+
+    def canAddPolls(self):
+        can_add = self._checkPermInFolder('collective.polls.AddPoll',
+                                          'encuestas')
+
+        return can_add
+
+
 class AddForm(base.NullAddForm):
     """Portlet add form.
     """
     def create(self):
         return Assignment()
-
-    
