@@ -1,10 +1,10 @@
-# Franco Pellegrini, 2011.
+# Franco Pellegrini <frapell@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2011-12-24 15:18+0000\n"
 "PO-Revision-Date: 2011-12-21 14:24-0300\n"
-"Last-Translator: Franco Pellegrini\n"
+"Last-Translator: Franco Pellegrini <frapell@gmail.com>\n"
 "Language-Team: Spanish <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
