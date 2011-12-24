@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2011-12-21 17:24+0000\n"
+"POT-Creation-Date: 2011-12-24 15:18+0000\n"
 "PO-Revision-Date: 2011-12-21 14:24-0300\n"
 "Last-Translator: Franco Pellegrini\n"
 "Language-Team: Spanish <>\n"
@@ -71,12 +71,8 @@ msgstr "Contenido más comentado"
 
 #: telesur/portlets/mostcommentedcontent.py:41
 #: telesur/portlets/recommendedcontent.py:41
-msgid ""
-"Public key for your application. You need to create an app here: "
-"http://disqus.com/api/applications"
-msgstr ""
-"Llave pública para su aplicación. Necesita crear una aplicación aquí: "
-"http://disqus.com/api/applications"
+msgid "Public key for your application. You need to create an app here: http://disqus.com/api/applications"
+msgstr "Llave pública para su aplicación. Necesita crear una aplicación aquí: http://disqus.com/api/applications"
 
 #: telesur/portlets/recommendedcontent.py:105
 msgid "Recommended Content"
@@ -89,13 +85,11 @@ msgstr "Llave secreta para su aplicación."
 
 #: telesur/portlets/recommendedcontent.py:57
 msgid "Specify the forum you wish to obtain recommended content from. "
-msgstr ""
-"Especifica el foro desde el cual quisiera obtener contenido recomendado."
+msgstr "Especifica el foro desde el cual quisiera obtener contenido recomendado."
 
 #: telesur/portlets/mostcommentedcontent.py:57
 msgid "Specify the forum you wish to obtain the most commented content from."
-msgstr ""
-"Especifica el foro desde el cual quisiera obtener contenido más comentado."
+msgstr "Especifica el foro desde el cual quisiera obtener contenido más comentado."
 
 #: telesur/portlets/mostcommentedcontent.py:37
 #: telesur/portlets/recommendedcontent.py:37
@@ -110,5 +104,4 @@ msgstr "El número máximo de resultados."
 #: telesur/portlets/utillinks.py:47
 msgid "Util links"
 msgstr "Links útiles"
-
 
