@@ -1,5 +1,8 @@
 <dl class="portlet twitterSearchPortlet"
-    i18n:domain="telesur.portlets">
+    i18n:domain="telesur.portlets"
+    tal:define="results view/getPopularPosts;
+                toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
+    tal:condition="results">
 
     <dt class="portletHeader" tal:condition="view/getHeader">
         <span class="portletTopLeft"></span>
@@ -7,9 +10,7 @@
         <span class="portletTopRight"></span>
     </dt>
 
-    <dd class="portletItem"
-        tal:define="results view/getPopularPosts;
-                    toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+    <dd class="portletItem">
         <div class="result-item" tal:repeat="result results">
 
             <div class="thread-content">
