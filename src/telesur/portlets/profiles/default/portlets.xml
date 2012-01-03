@@ -21,5 +21,11 @@
    description="A portlet with several util links"
    />
 
+ <portlet
+   addview="telesur.portlets.AddVideos"
+   title="Add Videos"
+   description="A portlet to add videos"
+   />
+
    
 </portlets>
