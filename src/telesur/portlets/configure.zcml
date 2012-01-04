@@ -56,13 +56,4 @@
          addview=".utillinks.AddForm"
          />
 
-     <plone:portlet
-         name="telesur.portlets.AddVideos"
-         interface=".addvideos.IAddVideos"
-         assignment=".addvideos.Assignment"
-         view_permission="zope2.View"
-         renderer=".addvideos.Renderer"
-         addview=".addvideos.AddForm"
-         />
-
 </configure>
