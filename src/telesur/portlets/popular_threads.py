@@ -18,7 +18,7 @@ import json
 import urllib
 
 
-class IMostCommentedContent(IPortletDataProvider):
+class IPopularThreads(IPortletDataProvider):
     """A portlet
 
     It inherits from IPortletDataProvider because for this portlet, the
@@ -49,8 +49,7 @@ class IMostCommentedContent(IPortletDataProvider):
 
     forum = schema.TextLine(title=_(u'Forum'),
                             description=_(u"Specify the forum you wish to "
-                                           "obtain the most commented "
-                                           "content from."),
+                                           "obtain the popular threads from."),
                               required=True)
 
     max_results = schema.Int(title=_(u'Maximum results'),
@@ -72,7 +71,7 @@ class Assignment(base.Assignment):
     with columns.
     """
 
-    implements(IMostCommentedContent)
+    implements(IPopularThreads)
 
     app_public_key = u""
     app_secret_key = u""
@@ -104,7 +103,7 @@ class Assignment(base.Assignment):
         """This property is used to give the title of the portlet in the
         "manage portlets" screen.
         """
-        return _(u"Most Commented Content")
+        return _(u"Popular Threads")
 
 
 class Renderer(base.Renderer):
@@ -115,7 +114,7 @@ class Renderer(base.Renderer):
     of this class. Other methods can be added and referenced in the template.
     """
 
-    render = ViewPageTemplateFile('mostcommentedcontent.pt')
+    render = ViewPageTemplateFile('popular_threads.pt')
 
     def getHeader(self):
         """
@@ -146,7 +145,7 @@ class AddForm(base.AddForm):
     zope.formlib which fields to display. The create() method actually
     constructs the assignment that is being added.
     """
-    form_fields = form.Fields(IMostCommentedContent)
+    form_fields = form.Fields(IPopularThreads)
 
     def create(self, data):
         return Assignment(**data)
@@ -158,4 +157,4 @@ class EditForm(base.EditForm):
     This is registered with configure.zcml. The form_fields variable tells
     zope.formlib which fields to display.
     """
-    form_fields = form.Fields(IMostCommentedContent)
+    form_fields = form.Fields(IPopularThreads)
