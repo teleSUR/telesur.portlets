@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from zope.interface import implements
 
 from plone.portlets.interfaces import IPortletDataProvider
@@ -24,19 +26,11 @@ class IMostCommentedContent(IPortletDataProvider):
     same.
     """
 
-    # TODO: Add any zope.schema fields here to capture portlet configuration
-    # information. Alternatively, if there are no settings, leave this as an
-    # empty interface - see also notes around the add form and edit form
-    # below.
-
-    # some_field = schema.TextLine(title=_(u"Some field"),
-    #                              description=_(u"A field to use"),
-    #                              required=True)
-
     header = schema.TextLine(title=_(u'Header'),
-                                    description=_(u"The header for the portlet. Leave empty for none."),
-                                    required=False)
-                                   
+                             description=_(u"The header for the portlet. "
+                                            "Leave empty for none."),
+                             required=False)
+
     app_public_key = schema.TextLine(title=_(u'Consumer Key'),
                               description=_(u"Public key for your application. "
                                              "You need to create an app here: "
@@ -59,7 +53,7 @@ class IMostCommentedContent(IPortletDataProvider):
                                            "content from."),
                               required=True)
 
-    max_results =  schema.Int(title=_(u'Maximum results'),
+    max_results = schema.Int(title=_(u'Maximum results'),
                                description=_(u"The maximum results number."),
                                required=True,
                                default=5)
@@ -70,7 +64,7 @@ class IMostCommentedContent(IPortletDataProvider):
                               required=True,
                               default=u"7d")
 
-                              
+
 class Assignment(base.Assignment):
     """Portlet assignment.
 
@@ -85,7 +79,7 @@ class Assignment(base.Assignment):
     access_token = u""
     forum = u""
     max_results = 5
-    header=None
+    header = None
     interval = u"7d"
 
     def __init__(self,
@@ -96,7 +90,7 @@ class Assignment(base.Assignment):
                  interval,
                  forum,
                  header=None,):
-                     
+
         self.app_public_key = app_public_key
         self.app_secret_key = app_secret_key
         self.access_token = access_token
@@ -104,7 +98,6 @@ class Assignment(base.Assignment):
         self.max_results = max_results
         self.header = header
         self.interval = interval
-        
 
     @property
     def title(self):
@@ -129,20 +122,22 @@ class Renderer(base.Renderer):
         Returns the header for the portlet
         """
         return self.data.header
-        
+
     def getPopularPosts(self):
         url = ("https://disqus.com/api/3.0/threads/listPopular.json?"
                "access_token=%s&api_key=%s&api_secret=%s&limit=%s&interval=%s"
                "&forum=%s")
 
-        results = json.load(urllib.urlopen(url  % (self.data.access_token,
-                                                   self.data.app_public_key,
-                                                   self.data.app_secret_key,
-                                                   self.data.max_results,
-                                                   self.data.interval,
-                                                   self.data.forum)))
+        results = json.load(urllib.urlopen(url % (self.data.access_token,
+                                                  self.data.app_public_key,
+                                                  self.data.app_secret_key,
+                                                  self.data.max_results,
+                                                  self.data.interval,
+                                                  self.data.forum)))
 
+        # TODO: validar el resultado porque puede haberse dado un error
         return results['response']
+
 
 class AddForm(base.AddForm):
     """Portlet add form.
@@ -155,21 +150,6 @@ class AddForm(base.AddForm):
 
     def create(self, data):
         return Assignment(**data)
-
-
-# NOTE: If this portlet does not have any configurable parameters, you
-# can use the next AddForm implementation instead of the previous.
-
-# class AddForm(base.NullAddForm):
-#     """Portlet add form.
-#     """
-#     def create(self):
-#         return Assignment()
-
-
-# NOTE: If this portlet does not have any configurable parameters, you
-# can remove the EditForm class definition and delete the editview
-# attribute from the <plone:portlet /> registration in configure.zcml
 
 
 class EditForm(base.EditForm):
