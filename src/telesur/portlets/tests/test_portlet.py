@@ -19,6 +19,7 @@ from telesur.portlets import popular_threads
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 
+
 class PortletTest(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
@@ -35,7 +36,7 @@ class PortletTest(unittest.TestCase):
         portlet2 = getUtility(
             IPortletType,
             name='telesur.portlets.PopularThreads')
-                
+
         self.assertEquals(portlet1.addview,
                           'telesur.portlets.HotThreads')
 
@@ -45,18 +46,18 @@ class PortletTest(unittest.TestCase):
     def test_interfaces(self):
         # TODO: Pass any keyword arguments to the Assignment constructor
         portlet1 = hot_threads.Assignment('public_key',
-                                                 'secret_key',
-                                                 'token',
-                                                 5,
-                                                 'testforum')
-                                                 
+                                          'secret_key',
+                                          'token',
+                                          5,
+                                          'testforum')
+
         portlet2 = popular_threads.Assignment('public_key',
-                                                   'secret_key',
-                                                   'token',
-                                                   5,
-                                                   'interval',
-                                                   'testforum',)
-                                                                                          
+                                              'secret_key',
+                                              'token',
+                                              5,
+                                              'interval',
+                                              'testforum',)
+
         self.failUnless(IPortletAssignment.providedBy(portlet1))
         self.failUnless(IPortletAssignment.providedBy(portlet2))
         self.failUnless(IPortletDataProvider.providedBy(portlet1.data))
@@ -70,9 +71,10 @@ class PortletTest(unittest.TestCase):
         portlet2 = getUtility(
             IPortletType,
             name='telesur.portlets.PopularThreads')
-            
+
         mapping = self.portal.restrictedTraverse(
             '++contextportlets++plone.leftcolumn')
+
         for m in mapping.keys():
             del mapping[m]
         addview1 = mapping.restrictedTraverse('+/' + portlet1.addview)
@@ -109,25 +111,24 @@ class PortletTest(unittest.TestCase):
         request = self.request
 
         mapping['foo1'] = hot_threads.Assignment('public_key',
-                                                        'secret_key',
-                                                        'token',
-                                                        5,
-                                                        'testforum')
+                                                 'secret_key',
+                                                 'token',
+                                                 5,
+                                                 'testforum')
 
         mapping['foo2'] = popular_threads.Assignment('public_key',
-                                                         'secret_key',
-                                                         'token',
-                                                         5,
-                                                         'interval',
-                                                         'testforum',)
-                                                        
+                                                     'secret_key',
+                                                     'token',
+                                                     5,
+                                                     'interval',
+                                                     'testforum',)
+
         editview1 = getMultiAdapter((mapping['foo1'], request), name='edit')
         editview2 = getMultiAdapter((mapping['foo2'], request), name='edit')
         self.failUnless(isinstance(editview1, hot_threads.EditForm))
         self.failUnless(isinstance(editview2, popular_threads.EditForm))
 
     def test_obtain_renderer(self):
-
 
         context = self.portal
         request = self.request
@@ -153,11 +154,10 @@ class PortletTest(unittest.TestCase):
             (context, request, view, manager, assgmnt1), IPortletRenderer)
         renderer2 = getMultiAdapter(
             (context, request, view, manager, assgmnt2), IPortletRenderer)
-            
+
         self.failUnless(isinstance(renderer1, hot_threads.Renderer))
         self.failUnless(isinstance(renderer2, popular_threads.Renderer))
 
-        
 
 class RenderTest(unittest.TestCase):
 
@@ -182,24 +182,24 @@ class RenderTest(unittest.TestCase):
     def test_render(self):
 
         assgmnt1 = hot_threads.Assignment('public_key',
-                                                 'secret_key',
-                                                 'token',
-                                                 5,
-                                                 'testforum')
+                                          'secret_key',
+                                          'token',
+                                          5,
+                                          'testforum')
 
         assgmnt2 = popular_threads.Assignment('public_key',
-                                                   'secret_key',
-                                                   'token',
-                                                   5,
-                                                   'interval',
-                                                   'testforum',)
-                                                   
+                                              'secret_key',
+                                              'token',
+                                              5,
+                                              'interval',
+                                              'testforum',)
+
         r1 = self.renderer(context=self.portal,
                           assignment=assgmnt1)
-                          
+
         r2 = self.renderer(context=self.portal,
                           assignment=assgmnt2)
-                          
+
         r1 = r1.__of__(self.portal)
         r2 = r2.__of__(self.portal)
         r1.update()
