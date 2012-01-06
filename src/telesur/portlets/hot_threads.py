@@ -18,7 +18,7 @@ import json
 import urllib
 
 
-class IRecommendedContent(IPortletDataProvider):
+class IHotThreads(IPortletDataProvider):
     """A portlet
 
     It inherits from IPortletDataProvider because for this portlet, the
@@ -65,7 +65,7 @@ class Assignment(base.Assignment):
     with columns.
     """
 
-    implements(IRecommendedContent)
+    implements(IHotThreads)
 
     app_public_key = u""
     app_secret_key = u""
@@ -105,7 +105,7 @@ class Renderer(base.Renderer):
     of this class. Other methods can be added and referenced in the template.
     """
 
-    render = ViewPageTemplateFile('recommendedcontent.pt')
+    render = ViewPageTemplateFile('hot_threads.pt')
 
     def getHeader(self):
         """
@@ -134,7 +134,7 @@ class AddForm(base.AddForm):
     zope.formlib which fields to display. The create() method actually
     constructs the assignment that is being added.
     """
-    form_fields = form.Fields(IRecommendedContent)
+    form_fields = form.Fields(IHotThreads)
 
     def create(self, data):
         return Assignment(**data)
@@ -146,4 +146,4 @@ class EditForm(base.EditForm):
     This is registered with configure.zcml. The form_fields variable tells
     zope.formlib which fields to display.
     """
-    form_fields = form.Fields(IRecommendedContent)
+    form_fields = form.Fields(IHotThreads)

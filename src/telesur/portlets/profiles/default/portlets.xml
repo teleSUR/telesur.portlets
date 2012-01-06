@@ -4,14 +4,14 @@
  <!-- Portlet type registrations -->
 
  <portlet
-   addview="telesur.portlets.RecommendedContent"
-   title="Recommended Content"
-   description="A portlet that lists recommended content"
+   addview="telesur.portlets.HotThreads"
+   title="Hot Threads"
+   description="A portlet that lists hot threads"
    />
 
  <portlet
    addview="telesur.portlets.PopularThreads"
-   title="Popular Threads Content"
+   title="Popular Threads"
    description="A portlet that lists popular threads"
    />
 

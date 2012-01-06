@@ -37,14 +37,14 @@
          />
 
      <plone:portlet
-         name="telesur.portlets.RecommendedContent"
-         interface=".recommendedcontent.IRecommendedContent"
-         assignment=".recommendedcontent.Assignment"
+         name="telesur.portlets.HotThreads"
+         interface=".hot_threads.IHotThreads"
+         assignment=".hot_threads.Assignment"
          view_permission="zope2.View"
          edit_permission="cmf.ManagePortal"
-         renderer=".recommendedcontent.Renderer"
-         addview=".recommendedcontent.AddForm"
-         editview=".recommendedcontent.EditForm"
+         renderer=".hot_threads.Renderer"
+         addview=".hot_threads.AddForm"
+         editview=".hot_threads.EditForm"
          />
 
      <plone:portlet

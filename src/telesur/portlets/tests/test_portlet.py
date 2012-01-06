@@ -13,7 +13,7 @@ from plone.portlets.interfaces import IPortletRenderer
 
 from plone.app.portlets.storage import PortletAssignmentMapping
 
-from telesur.portlets import recommendedcontent
+from telesur.portlets import hot_threads
 from telesur.portlets import popular_threads
 
 from plone.app.testing import TEST_USER_ID
@@ -31,20 +31,20 @@ class PortletTest(unittest.TestCase):
     def test_portlet_type_registered(self):
         portlet1 = getUtility(
             IPortletType,
-            name='telesur.portlets.RecommendedContent')
+            name='telesur.portlets.HotThreads')
         portlet2 = getUtility(
             IPortletType,
             name='telesur.portlets.PopularThreads')
                 
         self.assertEquals(portlet1.addview,
-                          'telesur.portlets.RecommendedContent')
+                          'telesur.portlets.HotThreads')
 
         self.assertEquals(portlet2.addview,
                           'telesur.portlets.PopularThreads')
 
     def test_interfaces(self):
         # TODO: Pass any keyword arguments to the Assignment constructor
-        portlet1 = recommendedcontent.Assignment('public_key',
+        portlet1 = hot_threads.Assignment('public_key',
                                                  'secret_key',
                                                  'token',
                                                  5,
@@ -65,7 +65,7 @@ class PortletTest(unittest.TestCase):
     def test_invoke_add_view(self):
         portlet1 = getUtility(
             IPortletType,
-            name='telesur.portlets.RecommendedContent')
+            name='telesur.portlets.HotThreads')
 
         portlet2 = getUtility(
             IPortletType,
@@ -97,7 +97,7 @@ class PortletTest(unittest.TestCase):
 
         self.assertEquals(len(mapping), 2)
         self.failUnless(isinstance(mapping.values()[0],
-                                   recommendedcontent.Assignment))
+                                   hot_threads.Assignment))
 
         self.failUnless(isinstance(mapping.values()[1],
                                    popular_threads.Assignment))
@@ -108,7 +108,7 @@ class PortletTest(unittest.TestCase):
         mapping = PortletAssignmentMapping()
         request = self.request
 
-        mapping['foo1'] = recommendedcontent.Assignment('public_key',
+        mapping['foo1'] = hot_threads.Assignment('public_key',
                                                         'secret_key',
                                                         'token',
                                                         5,
@@ -123,7 +123,7 @@ class PortletTest(unittest.TestCase):
                                                         
         editview1 = getMultiAdapter((mapping['foo1'], request), name='edit')
         editview2 = getMultiAdapter((mapping['foo2'], request), name='edit')
-        self.failUnless(isinstance(editview1, recommendedcontent.EditForm))
+        self.failUnless(isinstance(editview1, hot_threads.EditForm))
         self.failUnless(isinstance(editview2, popular_threads.EditForm))
 
     def test_obtain_renderer(self):
@@ -136,7 +136,7 @@ class PortletTest(unittest.TestCase):
                              context=self.portal)
 
 
-        assgmnt1 = recommendedcontent.Assignment('public_key',
+        assgmnt1 = hot_threads.Assignment('public_key',
                                                  'secret_key',
                                                  'token',
                                                  5,
@@ -154,7 +154,7 @@ class PortletTest(unittest.TestCase):
         renderer2 = getMultiAdapter(
             (context, request, view, manager, assgmnt2), IPortletRenderer)
             
-        self.failUnless(isinstance(renderer1, recommendedcontent.Renderer))
+        self.failUnless(isinstance(renderer1, hot_threads.Renderer))
         self.failUnless(isinstance(renderer2, popular_threads.Renderer))
 
         
@@ -181,7 +181,7 @@ class RenderTest(unittest.TestCase):
 
     def test_render(self):
 
-        assgmnt1 = recommendedcontent.Assignment('public_key',
+        assgmnt1 = hot_threads.Assignment('public_key',
                                                  'secret_key',
                                                  'token',
                                                  5,
