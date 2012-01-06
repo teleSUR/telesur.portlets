@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-01-06 21:57+0000\n"
+"POT-Creation-Date: 2012-01-06 23:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,18 +17,18 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: telesur.portlets\n"
 
+#: telesur/portlets/hot_threads.pt:30
 #: telesur/portlets/popular_threads.pt:30
-#: telesur/portlets/recommendedcontent.pt:30
 msgid "${comments} comments."
 msgstr ""
 
+#: telesur/portlets/hot_threads.py:46
 #: telesur/portlets/popular_threads.py:46
-#: telesur/portlets/recommendedcontent.py:46
 msgid "Access token"
 msgstr ""
 
+#: telesur/portlets/hot_threads.py:47
 #: telesur/portlets/popular_threads.py:47
-#: telesur/portlets/recommendedcontent.py:47
 msgid "Access token to make requests"
 msgstr ""
 
@@ -36,32 +36,36 @@ msgstr ""
 msgid "Choices: 1h, 6h, 12h, 1d, 7d, 30d, 90d"
 msgstr ""
 
+#: telesur/portlets/hot_threads.py:34
 #: telesur/portlets/popular_threads.py:34
-#: telesur/portlets/recommendedcontent.py:34
 msgid "Consumer Key"
 msgstr ""
 
+#: telesur/portlets/hot_threads.py:41
 #: telesur/portlets/popular_threads.py:41
-#: telesur/portlets/recommendedcontent.py:41
 msgid "Consumer Secret"
 msgstr ""
 
+#: telesur/portlets/hot_threads.py:50
 #: telesur/portlets/popular_threads.py:50
-#: telesur/portlets/recommendedcontent.py:50
 msgid "Forum"
 msgstr ""
 
+#: telesur/portlets/hot_threads.py:29
 #: telesur/portlets/popular_threads.py:29
-#: telesur/portlets/recommendedcontent.py:29
 msgid "Header"
+msgstr ""
+
+#: telesur/portlets/hot_threads.py:97
+msgid "Hot Threads"
 msgstr ""
 
 #: telesur/portlets/popular_threads.py:60
 msgid "Interval"
 msgstr ""
 
+#: telesur/portlets/hot_threads.py:55
 #: telesur/portlets/popular_threads.py:55
-#: telesur/portlets/recommendedcontent.py:55
 msgid "Maximum results"
 msgstr ""
 
@@ -69,35 +73,31 @@ msgstr ""
 msgid "Popular Threads"
 msgstr ""
 
+#: telesur/portlets/hot_threads.py:35
 #: telesur/portlets/popular_threads.py:35
-#: telesur/portlets/recommendedcontent.py:35
 msgid "Public key for your application. You need to create an app here: http://disqus.com/api/applications"
 msgstr ""
 
-#: telesur/portlets/recommendedcontent.py:97
-msgid "Recommended Content"
-msgstr ""
-
+#: telesur/portlets/hot_threads.py:42
 #: telesur/portlets/popular_threads.py:42
-#: telesur/portlets/recommendedcontent.py:42
 msgid "Secret key for your application."
 msgstr ""
 
-#: telesur/portlets/recommendedcontent.py:51
-msgid "Specify the forum you wish to obtain recommended content from."
+#: telesur/portlets/hot_threads.py:51
+msgid "Specify the forum you wish to obtain hot threads from."
 msgstr ""
 
 #: telesur/portlets/popular_threads.py:51
 msgid "Specify the forum you wish to obtain the popular threads from."
 msgstr ""
 
+#: telesur/portlets/hot_threads.py:30
 #: telesur/portlets/popular_threads.py:30
-#: telesur/portlets/recommendedcontent.py:30
 msgid "The header for the portlet. Leave empty for none."
 msgstr ""
 
+#: telesur/portlets/hot_threads.py:56
 #: telesur/portlets/popular_threads.py:56
-#: telesur/portlets/recommendedcontent.py:56
 msgid "The maximum results number."
 msgstr ""
 

@@ -49,7 +49,7 @@ class IHotThreads(IPortletDataProvider):
 
     forum = schema.TextLine(title=_(u'Forum'),
                             description=_(u"Specify the forum you wish to "
-                                           "obtain recommended content from."),
+                                           "obtain hot threads from."),
                             required=True)
 
     max_results = schema.Int(title=_(u'Maximum results'),
@@ -94,7 +94,7 @@ class Assignment(base.Assignment):
         """This property is used to give the title of the portlet in the
         "manage portlets" screen.
         """
-        return _(u"Recommended Content")
+        return _(u"Hot Threads")
 
 
 class Renderer(base.Renderer):
