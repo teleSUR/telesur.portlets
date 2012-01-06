@@ -29,6 +29,7 @@ setup(name='telesur.portlets',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'telesur.registry',
           'disqus-python==0.4.1',
       ],
       extras_require={
