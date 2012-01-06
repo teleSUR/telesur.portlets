@@ -14,7 +14,7 @@ from plone.portlets.interfaces import IPortletRenderer
 from plone.app.portlets.storage import PortletAssignmentMapping
 
 from telesur.portlets import recommendedcontent
-from telesur.portlets import mostcommentedcontent
+from telesur.portlets import popular_threads
 
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
@@ -34,13 +34,13 @@ class PortletTest(unittest.TestCase):
             name='telesur.portlets.RecommendedContent')
         portlet2 = getUtility(
             IPortletType,
-            name='telesur.portlets.MostCommentedContent')
+            name='telesur.portlets.PopularThreads')
                 
         self.assertEquals(portlet1.addview,
                           'telesur.portlets.RecommendedContent')
 
         self.assertEquals(portlet2.addview,
-                          'telesur.portlets.MostCommentedContent')
+                          'telesur.portlets.PopularThreads')
 
     def test_interfaces(self):
         # TODO: Pass any keyword arguments to the Assignment constructor
@@ -50,7 +50,7 @@ class PortletTest(unittest.TestCase):
                                                  5,
                                                  'testforum')
                                                  
-        portlet2 = mostcommentedcontent.Assignment('public_key',
+        portlet2 = popular_threads.Assignment('public_key',
                                                    'secret_key',
                                                    'token',
                                                    5,
@@ -69,7 +69,7 @@ class PortletTest(unittest.TestCase):
 
         portlet2 = getUtility(
             IPortletType,
-            name='telesur.portlets.MostCommentedContent')
+            name='telesur.portlets.PopularThreads')
             
         mapping = self.portal.restrictedTraverse(
             '++contextportlets++plone.leftcolumn')
@@ -100,7 +100,7 @@ class PortletTest(unittest.TestCase):
                                    recommendedcontent.Assignment))
 
         self.failUnless(isinstance(mapping.values()[1],
-                                   mostcommentedcontent.Assignment))
+                                   popular_threads.Assignment))
 
     def test_invoke_edit_view(self):
 
@@ -114,7 +114,7 @@ class PortletTest(unittest.TestCase):
                                                         5,
                                                         'testforum')
 
-        mapping['foo2'] = mostcommentedcontent.Assignment('public_key',
+        mapping['foo2'] = popular_threads.Assignment('public_key',
                                                          'secret_key',
                                                          'token',
                                                          5,
@@ -124,7 +124,7 @@ class PortletTest(unittest.TestCase):
         editview1 = getMultiAdapter((mapping['foo1'], request), name='edit')
         editview2 = getMultiAdapter((mapping['foo2'], request), name='edit')
         self.failUnless(isinstance(editview1, recommendedcontent.EditForm))
-        self.failUnless(isinstance(editview2, mostcommentedcontent.EditForm))
+        self.failUnless(isinstance(editview2, popular_threads.EditForm))
 
     def test_obtain_renderer(self):
 
@@ -142,7 +142,7 @@ class PortletTest(unittest.TestCase):
                                                  5,
                                                  'testforum')
 
-        assgmnt2 = mostcommentedcontent.Assignment('public_key',
+        assgmnt2 = popular_threads.Assignment('public_key',
                                                    'secret_key',
                                                    'token',
                                                    5,
@@ -155,7 +155,7 @@ class PortletTest(unittest.TestCase):
             (context, request, view, manager, assgmnt2), IPortletRenderer)
             
         self.failUnless(isinstance(renderer1, recommendedcontent.Renderer))
-        self.failUnless(isinstance(renderer2, mostcommentedcontent.Renderer))
+        self.failUnless(isinstance(renderer2, popular_threads.Renderer))
 
         
 
@@ -187,7 +187,7 @@ class RenderTest(unittest.TestCase):
                                                  5,
                                                  'testforum')
 
-        assgmnt2 = mostcommentedcontent.Assignment('public_key',
+        assgmnt2 = popular_threads.Assignment('public_key',
                                                    'secret_key',
                                                    'token',
                                                    5,

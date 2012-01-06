@@ -2,100 +2,104 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: telesur.portlets\n"
-"POT-Creation-Date: 2011-12-24 15:18+0000\n"
+"POT-Creation-Date: 2012-01-06 21:57+0000\n"
 "PO-Revision-Date: 2012-01-04 21:00-0600\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Spanish <https://github.com/collective>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
 "Domain: telesur.portlets\n"
 
-#: telesur/portlets/mostcommentedcontent.pt:27
-#: telesur/portlets/recommendedcontent.pt:27
+#: telesur/portlets/popular_threads.pt:30
+#: telesur/portlets/recommendedcontent.pt:30
 msgid "${comments} comments."
 msgstr "${comments} comentarios."
 
-#: telesur/portlets/mostcommentedcontent.py:52
-#: telesur/portlets/recommendedcontent.py:52
+#: telesur/portlets/popular_threads.py:46
+#: telesur/portlets/recommendedcontent.py:46
 msgid "Access token"
 msgstr "Token de acceso"
 
-#: telesur/portlets/mostcommentedcontent.py:53
-#: telesur/portlets/recommendedcontent.py:53
+#: telesur/portlets/popular_threads.py:47
+#: telesur/portlets/recommendedcontent.py:47
 msgid "Access token to make requests"
 msgstr "Token de acceso para realizar los pedidos"
 
-#: telesur/portlets/mostcommentedcontent.py:68
+#: telesur/portlets/popular_threads.py:61
 msgid "Choices: 1h, 6h, 12h, 1d, 7d, 30d, 90d"
 msgstr "Opciones: 1h, 6h, 12h, 1d, 7d, 30d, 90d"
 
-#: telesur/portlets/mostcommentedcontent.py:40
-#: telesur/portlets/recommendedcontent.py:40
+#: telesur/portlets/popular_threads.py:34
+#: telesur/portlets/recommendedcontent.py:34
 msgid "Consumer Key"
 msgstr "Consumer Key"
 
-#: telesur/portlets/mostcommentedcontent.py:47
-#: telesur/portlets/recommendedcontent.py:47
+#: telesur/portlets/popular_threads.py:41
+#: telesur/portlets/recommendedcontent.py:41
 msgid "Consumer Secret"
 msgstr "Consumer Secret"
 
-#: telesur/portlets/mostcommentedcontent.py:56
-#: telesur/portlets/recommendedcontent.py:56
+#: telesur/portlets/popular_threads.py:50
+#: telesur/portlets/recommendedcontent.py:50
 msgid "Forum"
 msgstr "Foro"
 
-#: telesur/portlets/mostcommentedcontent.py:36
-#: telesur/portlets/recommendedcontent.py:36
+#: telesur/portlets/popular_threads.py:29
+#: telesur/portlets/recommendedcontent.py:29
 msgid "Header"
 msgstr "Cabecera"
 
-#: telesur/portlets/mostcommentedcontent.py:67
+#: telesur/portlets/popular_threads.py:60
 msgid "Interval"
 msgstr "Intervalo"
 
-#: telesur/portlets/mostcommentedcontent.py:62
-#: telesur/portlets/recommendedcontent.py:61
+#: telesur/portlets/popular_threads.py:55
+#: telesur/portlets/recommendedcontent.py:55
 msgid "Maximum results"
 msgstr "Resultados máximos"
 
-#: telesur/portlets/mostcommentedcontent.py:114
-msgid "Most Commented Content"
-msgstr "Contenido más comentado"
+#: telesur/portlets/popular_threads.py:106
+msgid "Popular Threads"
+msgstr "Temas populares"
 
-#: telesur/portlets/mostcommentedcontent.py:41
-#: telesur/portlets/recommendedcontent.py:41
+#: telesur/portlets/popular_threads.py:35
+#: telesur/portlets/recommendedcontent.py:35
 msgid "Public key for your application. You need to create an app here: http://disqus.com/api/applications"
 msgstr "Llave pública para su aplicación. Necesita crear una aplicación en: http://disqus.com/api/applications"
 
-#: telesur/portlets/recommendedcontent.py:105
+#: telesur/portlets/recommendedcontent.py:97
 msgid "Recommended Content"
 msgstr "Contenido recomendado"
 
-#: telesur/portlets/mostcommentedcontent.py:48
-#: telesur/portlets/recommendedcontent.py:48
+#: telesur/portlets/popular_threads.py:42
+#: telesur/portlets/recommendedcontent.py:42
 msgid "Secret key for your application."
 msgstr "Llave secreta para su aplicación."
 
-#: telesur/portlets/recommendedcontent.py:57
-msgid "Specify the forum you wish to obtain recommended content from. "
+#: telesur/portlets/recommendedcontent.py:51
+msgid "Specify the forum you wish to obtain recommended content from."
 msgstr "Especifica el foro desde el cual quisiera obtener contenido recomendado."
 
-#: telesur/portlets/mostcommentedcontent.py:57
-msgid "Specify the forum you wish to obtain the most commented content from."
-msgstr "Especifica el foro desde el cual quisiera obtener contenido más comentado."
+#: telesur/portlets/popular_threads.py:51
+msgid "Specify the forum you wish to obtain the popular threads from."
+msgstr "Especifica el foro desde el cual quisiera obtener los temas populares."
 
-#: telesur/portlets/mostcommentedcontent.py:37
-#: telesur/portlets/recommendedcontent.py:37
+#: telesur/portlets/popular_threads.py:30
+#: telesur/portlets/recommendedcontent.py:30
 msgid "The header for the portlet. Leave empty for none."
 msgstr "La cabecera del portlet. Dejar vacío para ninguna."
 
-#: telesur/portlets/mostcommentedcontent.py:63
-#: telesur/portlets/recommendedcontent.py:62
+#: telesur/portlets/popular_threads.py:56
+#: telesur/portlets/recommendedcontent.py:56
 msgid "The maximum results number."
 msgstr "El número máximo de resultados."
 
-#: telesur/portlets/utillinks.py:47
+#: telesur/portlets/utillinks.py:49
 msgid "Util links"
 msgstr "Vínculos útiles"
 

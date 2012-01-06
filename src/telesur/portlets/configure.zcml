@@ -21,19 +21,19 @@
      <!-- Register the portlet -->
 
      <!-- If the portlet has no configurable parameters, you can remove
-          the EditForm declaration in mostcommentedcontent.py and delete
+          the EditForm declaration in popular_threads.py and delete
           the 'editview' attribute from this statement.
        -->
 
      <plone:portlet
-         name="telesur.portlets.MostCommentedContent"
-         interface=".mostcommentedcontent.IMostCommentedContent"
-         assignment=".mostcommentedcontent.Assignment"
+         name="telesur.portlets.PopularThreads"
+         interface=".popular_threads.IPopularThreads"
+         assignment=".popular_threads.Assignment"
          view_permission="zope2.View"
          edit_permission="cmf.ManagePortal"
-         renderer=".mostcommentedcontent.Renderer"
-         addview=".mostcommentedcontent.AddForm"
-         editview=".mostcommentedcontent.EditForm"
+         renderer=".popular_threads.Renderer"
+         addview=".popular_threads.AddForm"
+         editview=".popular_threads.EditForm"
          />
 
      <plone:portlet

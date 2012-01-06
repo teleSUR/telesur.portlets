@@ -10,9 +10,9 @@
    />
 
  <portlet
-   addview="telesur.portlets.MostCommentedContent"
-   title="Most Commented Content"
-   description="A portlet that lists most commented content"
+   addview="telesur.portlets.PopularThreads"
+   title="Popular Threads Content"
+   description="A portlet that lists popular threads"
    />
 
  <portlet
