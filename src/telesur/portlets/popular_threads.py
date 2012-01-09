@@ -1,21 +1,24 @@
 # -*- coding: utf-8 -*-
 
+import json
+import logging
+import urllib
+
+from zope.component import getUtility
 from zope.interface import implements
 
-from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.portlets import base
+from plone.portlets.interfaces import IPortletDataProvider
+from plone.registry.interfaces import IRegistry
 
-# TODO: If you define any fields for the portlet configuration schema below
-# do not forget to uncomment the following import
 from zope import schema
 from zope.formlib import form
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from telesur.registry.interfaces import IDisqusSettings
 
+from telesur.portlets.config import PROJECTNAME
 from telesur.portlets import _
-
-import json
-import urllib
 
 
 class IPopularThreads(IPortletDataProvider):
@@ -31,37 +34,21 @@ class IPopularThreads(IPortletDataProvider):
                                             "Leave empty for none."),
                              required=False)
 
-    app_public_key = schema.TextLine(title=_(u'Consumer Key'),
-                              description=_(u"Public key for your application. "
-                                             "You need to create an app here: "
-                                             "http://disqus.com/api/"
-                                             "applications"),
-                              required=True)
-
-    app_secret_key = schema.TextLine(title=_(u'Consumer Secret'),
-                              description=_(u"Secret key for your "
-                                             "application."),
-                              required=True)
-
-    access_token = schema.TextLine(title=_(u'Access token'),
-                              description=_(u"Access token to make requests"),
-                              required=True)
-
     forum = schema.TextLine(title=_(u'Forum'),
                             description=_(u"Specify the forum you wish to "
                                            "obtain the popular threads from."),
-                              required=True)
+                            required=True)
 
     max_results = schema.Int(title=_(u'Maximum results'),
-                               description=_(u"The maximum results number."),
-                               required=True,
-                               default=5)
+                             description=_(u"The maximum results number."),
+                             required=True,
+                             default=5)
 
     interval = schema.TextLine(title=_(u'Interval'),
-                              description=_(u"Choices: 1h, 6h, 12h, 1d, 7d, "
+                               description=_(u"Choices: 1h, 6h, 12h, 1d, 7d, "
                                              "30d, 90d"),
-                              required=True,
-                              default=u"7d")
+                               required=True,
+                               default=u"7d")
 
 
 class Assignment(base.Assignment):
@@ -73,26 +60,17 @@ class Assignment(base.Assignment):
 
     implements(IPopularThreads)
 
-    app_public_key = u""
-    app_secret_key = u""
-    access_token = u""
     forum = u""
     max_results = 5
     header = None
     interval = u"7d"
 
     def __init__(self,
-                 app_public_key,
-                 app_secret_key,
-                 access_token,
                  max_results,
                  interval,
                  forum,
                  header=None,):
 
-        self.app_public_key = app_public_key
-        self.app_secret_key = app_secret_key
-        self.access_token = access_token
         self.forum = forum
         self.max_results = max_results
         self.header = header
@@ -123,19 +101,42 @@ class Renderer(base.Renderer):
         return self.data.header
 
     def getPopularPosts(self):
-        url = ("https://disqus.com/api/3.0/threads/listPopular.json?"
-               "access_token=%s&api_key=%s&api_secret=%s&limit=%s&interval=%s"
-               "&forum=%s")
+        base_url = ("https://disqus.com/api/3.0/threads/listPopular.json?"
+                    "access_token=%s&api_key=%s&api_secret=%s&limit=%s"
+                    "&interval=%s&forum=%s")
 
-        results = json.load(urllib.urlopen(url % (self.data.access_token,
-                                                  self.data.app_public_key,
-                                                  self.data.app_secret_key,
-                                                  self.data.max_results,
-                                                  self.data.interval,
-                                                  self.data.forum)))
+        result = []
+        registry = getUtility(IRegistry)
+        disqus = registry.forInterface(IDisqusSettings)
+        url = base_url % (disqus.access_token,
+                          disqus.app_public_key,
+                          disqus.app_secret_key,
+                          self.data.max_results,
+                          self.data.interval,
+                          self.data.forum)
 
-        # TODO: validar el resultado porque puede haberse dado un error
-        return results['response']
+        logger = logging.getLogger(PROJECTNAME)
+
+        try:
+            request = urllib.urlopen(url)
+        except IOError, e:
+            logger.error('urlopen error trying to access to the Disqus site - '\
+                         'errno: "%i" - message: "%s".' \
+                         % ( e.strerror.errno,  e.strerror.strerror))
+        else:
+            response = request.read()
+            results = json.loads(response)
+
+            if results['code'] != 0:
+                logger.error('Disqus API error - '\
+                             'code: %(code)i - response: %(response)s - '\
+                             'See "http://disqus.com/api/docs/errors/" ' \
+                             'for more details' % results)
+            else:
+                result = results['response']
+
+        finally:
+            return result
 
 
 class AddForm(base.AddForm):
