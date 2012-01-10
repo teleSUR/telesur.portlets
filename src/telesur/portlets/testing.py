@@ -5,12 +5,15 @@ from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import FunctionalTesting
 
+
 class Fixture(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
         # Load ZCML
+        import telesur.registry
+        self.loadZCML(package=telesur.registry)
         import telesur.portlets
         self.loadZCML(package=telesur.portlets)
 
