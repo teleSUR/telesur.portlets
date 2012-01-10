@@ -20,7 +20,7 @@ from telesur.registry.interfaces import IDisqusSettings
 
 
 def disqus_list_hot(forum, max_results):
-    """
+    """ Obtiene un listado de los threads más recomendados.
     """
     base_url = ("https://disqus.com/api/3.0/threads/listHot.json?"
                 "access_token=%s&api_key=%s&api_secret=%s&"
@@ -38,7 +38,7 @@ def disqus_list_hot(forum, max_results):
 
 
 def disqus_list_popular(forum, max_results, interval):
-    """
+    """ Obtiene un listado de los threads más populares.
     """
     base_url = ("https://disqus.com/api/3.0/threads/listPopular.json?"
                 "access_token=%s&api_key=%s&api_secret=%s&"
@@ -68,7 +68,7 @@ def get_disqus_results(url):
     except IOError, e:
         logger.error('urlopen error trying to access to the Disqus site - '\
                      'errno: "%i" - message: "%s".' \
-                     % ( e.strerror.errno,  e.strerror.strerror))
+                     % (e.strerror.errno,  e.strerror.strerror))
     else:
         response = request.read()
         results = json.loads(response)
@@ -101,7 +101,7 @@ def get_disqus_results(url):
                 if not oid:
                     oid = str(part)
                 path.insert(2, part)
-                query = {'id': oid, 'path': {'query' : "/".join(path)}}
+                query = {'id': oid, 'path': {'query': "/".join(path)}}
                 brains = portal_catalog.searchResults(query)
                 if brains:
                     brain = brains[0]
