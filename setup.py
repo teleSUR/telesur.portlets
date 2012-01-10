@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from setuptools import setup, find_packages
 import os
 
@@ -11,12 +13,15 @@ setup(name='telesur.portlets',
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
+        "Development Status :: 4 - Beta",
         "Framework :: Plone :: 4.1",
         "License :: OSI Approved :: GNU General Public License (GPL)",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
+        "Topic :: Office/Business :: News/Diary",
+        "Topic :: Software Development :: Libraries :: Python Modules",
         ],
-      keywords='portlets website plone teleSUR',
+      keywords='portlets disqus plone telesur',
       author='',
       author_email='',
       url='https://github.com/desarrollotv/telesur.portlets',
@@ -27,17 +32,14 @@ setup(name='telesur.portlets',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'setuptools',
-          # -*- Extra requirements: -*-
-          'telesur.registry',
-          'disqus-python==0.4.1',
+        'setuptools',
+        'disqus-python>=0.4.1',
+        'telesur.registry',
       ],
       extras_require={
         'test': ['plone.app.testing'],
         },
       entry_points="""
-      # -*- Entry points: -*-
-
       [z3c.autoinclude.plugin]
       target = plone
       """,
