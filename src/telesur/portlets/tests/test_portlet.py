@@ -1,9 +1,11 @@
-from zope.component import getUtility, getMultiAdapter
+# -*- coding: utf-8 -*-
+
 import unittest2 as unittest
 
-from telesur.portlets.testing import INTEGRATION_TESTING
-
 from zope.component import getUtility, getMultiAdapter
+
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import setRoles
 
 from plone.portlets.interfaces import IPortletType
 from plone.portlets.interfaces import IPortletManager
@@ -15,9 +17,7 @@ from plone.app.portlets.storage import PortletAssignmentMapping
 
 from telesur.portlets import hot_threads
 from telesur.portlets import popular_threads
-
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import setRoles
+from telesur.portlets.testing import INTEGRATION_TESTING
 
 
 class PortletTest(unittest.TestCase):
@@ -45,12 +45,9 @@ class PortletTest(unittest.TestCase):
 
     def test_interfaces(self):
         # TODO: Pass any keyword arguments to the Assignment constructor
-        portlet1 = hot_threads.Assignment(5,
-                                          'testforum')
+        portlet1 = hot_threads.Assignment(5, 'testforum')
 
-        portlet2 = popular_threads.Assignment(5,
-                                              'interval',
-                                              'testforum',)
+        portlet2 = popular_threads.Assignment(5, 'interval', 'testforum',)
 
         self.failUnless(IPortletAssignment.providedBy(portlet1))
         self.failUnless(IPortletAssignment.providedBy(portlet2))
@@ -78,12 +75,12 @@ class PortletTest(unittest.TestCase):
         # form.
         # Note: if the portlet has a NullAddForm, simply call
         # addview() instead of the next line.
-        addview1.createAndAdd(data={'max_results':5,
-                                    'forum':'testforum'})
+        addview1.createAndAdd(data={'max_results': 5,
+                                    'forum': 'testforum'})
 
-        addview2.createAndAdd(data={'max_results':5,
-                                    'interval':'interval',
-                                    'forum':'testforum'})
+        addview2.createAndAdd(data={'max_results': 5,
+                                    'interval': 'interval',
+                                    'forum': 'testforum'})
 
         self.assertEquals(len(mapping), 2)
         self.failUnless(isinstance(mapping.values()[0],
@@ -117,7 +114,6 @@ class PortletTest(unittest.TestCase):
         view = context.restrictedTraverse('@@plone')
         manager = getUtility(IPortletManager, name='plone.rightcolumn',
                              context=self.portal)
-
 
         assgmnt1 = hot_threads.Assignment(5,
                                           'testforum')
