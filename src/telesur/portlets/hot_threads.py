@@ -103,7 +103,6 @@ class Renderer(base.Renderer):
                           disqus.app_public_key,
                           disqus.app_secret_key,
                           self.data.max_results,
-                          self.data.interval,
                           self.data.forum)
 
         logger = logging.getLogger(PROJECTNAME)
