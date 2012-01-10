@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 
+from time import time
+
 from zope import schema
 from zope.formlib import form
 from zope.interface import implements
 
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
+from plone.memoize import ram
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from telesur.portlets import _
+from telesur.portlets.config import TCACHE
 from telesur.portlets.utils import disqus_list_hot
 
 
@@ -83,6 +87,7 @@ class Renderer(base.Renderer):
         """
         return self.data.header
 
+    @ram.cache(lambda *args: time() // TCACHE)
     def getPopularPosts(self):
         """
         """
