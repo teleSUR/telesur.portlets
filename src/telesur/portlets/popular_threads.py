@@ -1,24 +1,16 @@
 # -*- coding: utf-8 -*-
 
-import json
-import logging
-import urllib
-
-from zope.component import getUtility
+from zope import schema
+from zope.formlib import form
 from zope.interface import implements
 
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
-from plone.registry.interfaces import IRegistry
-
-from zope import schema
-from zope.formlib import form
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from telesur.registry.interfaces import IDisqusSettings
 
-from telesur.portlets.config import PROJECTNAME
 from telesur.portlets import _
+from telesur.portlets.utils import disqus_list_popular
 
 
 class IPopularThreads(IPortletDataProvider):
@@ -101,42 +93,11 @@ class Renderer(base.Renderer):
         return self.data.header
 
     def getPopularPosts(self):
-        base_url = ("https://disqus.com/api/3.0/threads/listPopular.json?"
-                    "access_token=%s&api_key=%s&api_secret=%s&limit=%s"
-                    "&interval=%s&forum=%s")
-
-        result = []
-        registry = getUtility(IRegistry)
-        disqus = registry.forInterface(IDisqusSettings)
-        url = base_url % (disqus.access_token,
-                          disqus.app_public_key,
-                          disqus.app_secret_key,
-                          self.data.max_results,
-                          self.data.interval,
-                          self.data.forum)
-
-        logger = logging.getLogger(PROJECTNAME)
-
-        try:
-            request = urllib.urlopen(url)
-        except IOError, e:
-            logger.error('urlopen error trying to access to the Disqus site - '\
-                         'errno: "%i" - message: "%s".' \
-                         % ( e.strerror.errno,  e.strerror.strerror))
-        else:
-            response = request.read()
-            results = json.loads(response)
-
-            if results['code'] != 0:
-                logger.error('Disqus API error - '\
-                             'code: %(code)i - response: %(response)s - '\
-                             'See "http://disqus.com/api/docs/errors/" ' \
-                             'for more details' % results)
-            else:
-                result = results['response']
-
-        finally:
-            return result
+        """
+        """
+        return disqus_list_popular(self.data.forum,
+                                   self.data.max_results,
+                                   self.data.interval)
 
 
 class AddForm(base.AddForm):
