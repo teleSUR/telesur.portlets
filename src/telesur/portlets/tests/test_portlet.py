@@ -45,16 +45,10 @@ class PortletTest(unittest.TestCase):
 
     def test_interfaces(self):
         # TODO: Pass any keyword arguments to the Assignment constructor
-        portlet1 = hot_threads.Assignment('public_key',
-                                          'secret_key',
-                                          'token',
-                                          5,
+        portlet1 = hot_threads.Assignment(5,
                                           'testforum')
 
-        portlet2 = popular_threads.Assignment('public_key',
-                                              'secret_key',
-                                              'token',
-                                              5,
+        portlet2 = popular_threads.Assignment(5,
                                               'interval',
                                               'testforum',)
 
@@ -84,16 +78,10 @@ class PortletTest(unittest.TestCase):
         # form.
         # Note: if the portlet has a NullAddForm, simply call
         # addview() instead of the next line.
-        addview1.createAndAdd(data={'app_public_key':'public_key',
-                                    'app_secret_key':'secret_key',
-                                    'access_token':'token',
-                                    'max_results':5,
+        addview1.createAndAdd(data={'max_results':5,
                                     'forum':'testforum'})
 
-        addview2.createAndAdd(data={'app_public_key':'public_key',
-                                    'app_secret_key':'secret_key',
-                                    'access_token':'token',
-                                    'max_results':5,
+        addview2.createAndAdd(data={'max_results':5,
                                     'interval':'interval',
                                     'forum':'testforum'})
 
@@ -110,16 +98,10 @@ class PortletTest(unittest.TestCase):
         mapping = PortletAssignmentMapping()
         request = self.request
 
-        mapping['foo1'] = hot_threads.Assignment('public_key',
-                                                 'secret_key',
-                                                 'token',
-                                                 5,
+        mapping['foo1'] = hot_threads.Assignment(5,
                                                  'testforum')
 
-        mapping['foo2'] = popular_threads.Assignment('public_key',
-                                                     'secret_key',
-                                                     'token',
-                                                     5,
+        mapping['foo2'] = popular_threads.Assignment(5,
                                                      'interval',
                                                      'testforum',)
 
@@ -137,18 +119,12 @@ class PortletTest(unittest.TestCase):
                              context=self.portal)
 
 
-        assgmnt1 = hot_threads.Assignment('public_key',
-                                                 'secret_key',
-                                                 'token',
-                                                 5,
-                                                 'testforum')
+        assgmnt1 = hot_threads.Assignment(5,
+                                          'testforum')
 
-        assgmnt2 = popular_threads.Assignment('public_key',
-                                                   'secret_key',
-                                                   'token',
-                                                   5,
-                                                   'interval',
-                                                   'testforum',)
+        assgmnt2 = popular_threads.Assignment(5,
+                                              'interval',
+                                              'testforum',)
 
         renderer1 = getMultiAdapter(
             (context, request, view, manager, assgmnt1), IPortletRenderer)
@@ -181,16 +157,10 @@ class RenderTest(unittest.TestCase):
 
     def test_render(self):
 
-        assgmnt1 = hot_threads.Assignment('public_key',
-                                          'secret_key',
-                                          'token',
-                                          5,
+        assgmnt1 = hot_threads.Assignment(5,
                                           'testforum')
 
-        assgmnt2 = popular_threads.Assignment('public_key',
-                                              'secret_key',
-                                              'token',
-                                              5,
+        assgmnt2 = popular_threads.Assignment(5,
                                               'interval',
                                               'testforum',)
 

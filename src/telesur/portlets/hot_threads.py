@@ -1,21 +1,16 @@
 # -*- coding: utf-8 -*-
 
-from zope.interface import implements
-
-from plone.portlets.interfaces import IPortletDataProvider
-from plone.app.portlets.portlets import base
-
-# TODO: If you define any fields for the portlet configuration schema below
-# do not forget to uncomment the following import
 from zope import schema
 from zope.formlib import form
+from zope.interface import implements
+
+from plone.app.portlets.portlets import base
+from plone.portlets.interfaces import IPortletDataProvider
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from telesur.portlets import _
-
-import json
-import urllib
+from telesur.portlets.utils import disqus_list_hot
 
 
 class IHotThreads(IPortletDataProvider):
@@ -31,25 +26,9 @@ class IHotThreads(IPortletDataProvider):
                                             "Leave empty for none."),
                              required=False)
 
-    app_public_key = schema.TextLine(title=_(u'Consumer Key'),
-                              description=_(u"Public key for your application. "
-                                             "You need to create an app here: "
-                                             "http://disqus.com/api/"
-                                             "applications"),
-                              required=True)
-
-    app_secret_key = schema.TextLine(title=_(u'Consumer Secret'),
-                                     description=_(u"Secret key for your "
-                                                    "application."),
-                                     required=True)
-
-    access_token = schema.TextLine(title=_(u'Access token'),
-                              description=_(u"Access token to make requests"),
-                              required=True)
-
     forum = schema.TextLine(title=_(u'Forum'),
                             description=_(u"Specify the forum you wish to "
-                                           "obtain hot threads from."),
+                                           "obtain the hot threads from."),
                             required=True)
 
     max_results = schema.Int(title=_(u'Maximum results'),
@@ -67,24 +46,15 @@ class Assignment(base.Assignment):
 
     implements(IHotThreads)
 
-    app_public_key = u""
-    app_secret_key = u""
-    access_token = u""
     forum = u""
     max_results = 5
     header = None
 
     def __init__(self,
-                 app_public_key,
-                 app_secret_key,
-                 access_token,
                  max_results,
                  forum,
                  header=None,):
 
-        self.app_public_key = app_public_key
-        self.app_secret_key = app_secret_key
-        self.access_token = access_token
         self.forum = forum
         self.max_results = max_results
         self.header = header
@@ -114,17 +84,9 @@ class Renderer(base.Renderer):
         return self.data.header
 
     def getPopularPosts(self):
-        url = ("https://disqus.com/api/3.0/threads/listHot.json?"
-               "access_token=%s&api_key=%s&api_secret=%s&limit=%s&forum=%s")
-
-        results = json.load(urllib.urlopen(url % (self.data.access_token,
-                                                  self.data.app_public_key,
-                                                  self.data.app_secret_key,
-                                                  self.data.max_results,
-                                                  self.data.forum)))
-
-        # TODO: validar el resultado porque puede haberse dado un error
-        return results['response']
+        """
+        """
+        return disqus_list_hot(self.data.forum, self.data.max_results)
 
 
 class AddForm(base.AddForm):
