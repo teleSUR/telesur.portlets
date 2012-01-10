@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-01-09 23:51+0000\n"
+"POT-Creation-Date: 2012-01-10 07:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,52 +22,52 @@ msgstr ""
 msgid "${comments} comments."
 msgstr ""
 
-#: telesur/portlets/popular_threads.py:48
+#: telesur/portlets/popular_threads.py:40
 msgid "Choices: 1h, 6h, 12h, 1d, 7d, 30d, 90d"
 msgstr ""
 
-#: telesur/portlets/hot_threads.py:37
-#: telesur/portlets/popular_threads.py:37
+#: telesur/portlets/hot_threads.py:29
+#: telesur/portlets/popular_threads.py:29
 msgid "Forum"
 msgstr ""
 
-#: telesur/portlets/hot_threads.py:32
-#: telesur/portlets/popular_threads.py:32
+#: telesur/portlets/hot_threads.py:24
+#: telesur/portlets/popular_threads.py:24
 msgid "Header"
 msgstr ""
 
-#: telesur/portlets/popular_threads.py:47
+#: telesur/portlets/hot_threads.py:67
+msgid "Hot Threads"
+msgstr ""
+
+#: telesur/portlets/popular_threads.py:39
 msgid "Interval"
 msgstr ""
 
-#: telesur/portlets/hot_threads.py:42
-#: telesur/portlets/popular_threads.py:42
+#: telesur/portlets/hot_threads.py:34
+#: telesur/portlets/popular_threads.py:34
 msgid "Maximum results"
 msgstr ""
 
-#: telesur/portlets/popular_threads.py:84
+#: telesur/portlets/popular_threads.py:76
 msgid "Popular Threads"
 msgstr ""
 
-#: telesur/portlets/hot_threads.py:75
-msgid "Recommended Content"
+#: telesur/portlets/hot_threads.py:30
+msgid "Specify the forum you wish to obtain the hot threads from."
 msgstr ""
 
-#: telesur/portlets/hot_threads.py:38
-msgid "Specify the forum you wish to obtain recommended content from."
-msgstr ""
-
-#: telesur/portlets/popular_threads.py:38
+#: telesur/portlets/popular_threads.py:30
 msgid "Specify the forum you wish to obtain the popular threads from."
 msgstr ""
 
-#: telesur/portlets/hot_threads.py:33
-#: telesur/portlets/popular_threads.py:33
+#: telesur/portlets/hot_threads.py:25
+#: telesur/portlets/popular_threads.py:25
 msgid "The header for the portlet. Leave empty for none."
 msgstr ""
 
-#: telesur/portlets/hot_threads.py:43
-#: telesur/portlets/popular_threads.py:43
+#: telesur/portlets/hot_threads.py:35
+#: telesur/portlets/popular_threads.py:35
 msgid "The maximum results number."
 msgstr ""
 
