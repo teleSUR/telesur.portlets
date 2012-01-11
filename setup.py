@@ -10,8 +10,6 @@ setup(name='telesur.portlets',
       description="Aqui se crearan portlets a utilizar en el sitio de TeleSUR",
       long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
-      # Get more strings from
-      # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
         "Development Status :: 4 - Beta",
         "Framework :: Plone :: 4.1",
@@ -22,8 +20,8 @@ setup(name='telesur.portlets',
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
       keywords='portlets disqus plone telesur',
-      author='',
-      author_email='',
+      author='Franco Pellegrini',
+      author_email='frapell@gmail.com',
       url='https://github.com/desarrollotv/telesur.portlets',
       license='GPL',
       packages=find_packages('src'),
