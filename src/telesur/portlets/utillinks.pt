@@ -8,10 +8,12 @@
     i18n:domain="telesur.portlets">
 
   <dd class="portletItem"
-      tal:define="portal_url context/@@plone_portal_state/portal_url;">
-    <div class="link-dashboard">
+      tal:define="portal_url context/@@plone_portal_state/portal_url;
+                  current_page_url context/@@plone_context_state/current_page_url;
+                  dashboard_url string:${portal_url}/dashboard">
+    <div class="link-dashboard" tal:condition="python:current_page_url != dashboard_url">
       <a href="#"
-         tal:attributes="href string:${portal_url}/dashboard">
+         tal:attributes="href dashboard_url">
         Ir al cuadro de mandos
       </a>
     </div>
