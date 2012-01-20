@@ -9,6 +9,13 @@
 
   <dd class="portletItem"
       tal:define="portal_url context/@@plone_portal_state/portal_url;">
+    <div class="link-dashboard">
+      <a href="#"
+         tal:attributes="href string:${portal_url}/dashboard">
+        Ir al cuadro de mandos
+      </a>
+    </div>
+
     <div class="link-noticias" tal:condition="can_add_news">
       <a href="#"
          tal:attributes="href string:${portal_url}/articulos/++add++collective.nitf.content">
