@@ -68,7 +68,7 @@ def get_disqus_results(url):
     except IOError, e:
         logger.error('urlopen error trying to access to the Disqus site - '\
                      'errno: "%i" - message: "%s".' \
-                     % (e.strerror.errno,  e.strerror.strerror))
+                     % (e.strerror.errno, e.strerror.strerror))
     else:
         response = request.read()
         results = json.loads(response)
