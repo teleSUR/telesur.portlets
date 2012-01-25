@@ -9,18 +9,24 @@
    addview="telesur.portlets.HotThreads"
    title="Hot Threads"
    description="A portlet that lists hot threads"
+   i18n:attributes="title;
+                    description"
    />
 
  <portlet
    addview="telesur.portlets.PopularThreads"
    title="Popular Threads"
    description="A portlet that lists popular threads"
+   i18n:attributes="title;
+                    description"
    />
 
  <portlet
    addview="telesur.portlets.UtilLinks"
    title="Util links"
    description="A portlet with several util links"
+   i18n:attributes="title;
+                    description"
    />
    
 </portlets>
