@@ -35,7 +35,11 @@
 
         <div class="thread-time">
           <p class="thread-timestamp"
-             tal:content="python:toLocalizedTime(result['createdAt'], long_format=1)" />
+             tal:content="python:toLocalizedTime(result['createdAt'], long_format=1)"
+             tal:condition="not:view/data/pretty_date" />
+          <p class="thread-timestamp"
+            tal:content="python:view.getDate(result['createdAt'])"
+            tal:condition="view/data/pretty_date" />
         </div>
       </div>
     </div>

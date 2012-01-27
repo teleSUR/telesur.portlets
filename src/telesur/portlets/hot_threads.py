@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from zope.component import getUtility
 from time import time
 
 from zope import schema
@@ -8,6 +9,8 @@ from zope.interface import implements
 
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
+from collective.prettydate.interfaces import IPrettyDate
+
 from plone.memoize import ram
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -40,6 +43,11 @@ class IHotThreads(IPortletDataProvider):
                              required=True,
                              default=5)
 
+    pretty_date = schema.Bool(title=_(u'Pretty dates'),
+                              description=_(u"Show dates in a pretty format (ie. '4 hours ago')."),
+                              default=True,
+                              required=False)
+
 
 class Assignment(base.Assignment):
     """Portlet assignment.
@@ -53,15 +61,18 @@ class Assignment(base.Assignment):
     forum = u""
     max_results = 5
     header = None
+    pretty_date = True
 
     def __init__(self,
                  max_results,
                  forum,
-                 header=None,):
+                 header=None,
+                 pretty_date=True):
 
         self.forum = forum
         self.max_results = max_results
         self.header = header
+        self.pretty_date = pretty_date
 
     @property
     def title(self):
@@ -92,6 +103,17 @@ class Renderer(base.Renderer):
         """
         """
         return disqus_list_hot(self.data.forum, self.data.max_results)
+
+    def getDate(self, date):
+        if self.data.pretty_date:
+            import pdb;pdb.set_trace()
+            # Returns human readable date for the tweet
+            date_utility = getUtility(IPrettyDate)
+            date = date_utility.date(result.GetCreatedAt())
+        else:
+            date = DateTime.DateTime(result.GetCreatedAt())
+
+        return date
 
 
 class AddForm(base.AddForm):

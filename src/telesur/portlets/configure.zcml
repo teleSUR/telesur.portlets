@@ -56,4 +56,15 @@
          addview=".utillinks.AddForm"
          />
 
+      <plone:portlet
+         name="telesur.portlets.LatestNITF"
+         interface=".latest_nitf.ILatestNITFPortlet"
+         assignment=".latest_nitf.Assignment"
+         view_permission="zope2.View"
+         edit_permission="cmf.ManagePortal"
+         renderer=".latest_nitf.Renderer"
+         addview=".latest_nitf.AddForm"
+         editview=".latest_nitf.EditForm"
+         />
+
 </configure>

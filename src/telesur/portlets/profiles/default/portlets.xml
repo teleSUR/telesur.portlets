@@ -28,5 +28,13 @@
    i18n:attributes="title;
                     description"
    />
-   
+
+ <portlet
+   addview="telesur.portlets.LatestNITF"
+   title="Latest NITF"
+   description="A portlet that shows latest NITFs from different collections"
+   i18n:attributes="title;
+                    description"
+   />
+
 </portlets>
