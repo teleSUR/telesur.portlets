@@ -19,6 +19,14 @@ from telesur.portlets import _
 from telesur.portlets.config import TCACHE
 from telesur.portlets.utils import disqus_list_hot
 
+def cache_key_simple(func, var):
+    timeout = time() // TCACHE
+    return (timeout,
+            var.data.header,
+            var.data.forum,
+            var.data.max_results,
+            var.data.pretty_date)
+            
 
 class IHotThreads(IPortletDataProvider):
     """A portlet
@@ -98,7 +106,7 @@ class Renderer(base.Renderer):
         """
         return self.data.header
 
-    @ram.cache(lambda *args: time() // TCACHE)
+    @ram.cache(cache_key_simple)
     def getPopularPosts(self):
         """
         """
@@ -106,13 +114,10 @@ class Renderer(base.Renderer):
 
     def getDate(self, date):
         if self.data.pretty_date:
-            import pdb;pdb.set_trace()
-            # Returns human readable date for the tweet
+            # Returns human readable date
             date_utility = getUtility(IPrettyDate)
-            date = date_utility.date(result.GetCreatedAt())
-        else:
-            date = DateTime.DateTime(result.GetCreatedAt())
-
+            date = date_utility.date(date)
+            
         return date
 
 

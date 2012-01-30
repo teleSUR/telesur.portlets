@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from zope.component import getUtility
 from time import time
 
 from zope import schema
@@ -8,6 +9,7 @@ from zope.interface import implements
 
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
+from collective.prettydate.interfaces import IPrettyDate
 from plone.memoize import ram
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -16,6 +18,14 @@ from telesur.portlets import _
 from telesur.portlets.config import TCACHE
 from telesur.portlets.utils import disqus_list_popular
 
+def cache_key_simple(func, var):
+    timeout = time() // TCACHE
+    return (timeout,
+            var.data.header,
+            var.data.forum,
+            var.data.max_results,
+            var.data.interval,
+            var.data.pretty_date)
 
 class IPopularThreads(IPortletDataProvider):
     """A portlet
@@ -46,7 +56,12 @@ class IPopularThreads(IPortletDataProvider):
                                required=True,
                                default=u"7d")
 
+    pretty_date = schema.Bool(title=_(u'Pretty dates'),
+                              description=_(u"Show dates in a pretty format (ie. '4 hours ago')."),
+                              default=True,
+                              required=False)
 
+                              
 class Assignment(base.Assignment):
     """Portlet assignment.
 
@@ -60,17 +75,20 @@ class Assignment(base.Assignment):
     max_results = 5
     header = None
     interval = u"7d"
+    pretty_date=True
 
     def __init__(self,
                  max_results,
                  interval,
                  forum,
-                 header=None,):
+                 header=None,
+                 pretty_date=True):
 
         self.forum = forum
         self.max_results = max_results
         self.header = header
         self.interval = interval
+        self.pretty_date = pretty_date
 
     @property
     def title(self):
@@ -96,7 +114,7 @@ class Renderer(base.Renderer):
         """
         return self.data.header
 
-    @ram.cache(lambda *args: time() // TCACHE)
+    @ram.cache(cache_key_simple)
     def getPopularPosts(self):
         """
         """
@@ -104,6 +122,14 @@ class Renderer(base.Renderer):
                                    self.data.max_results,
                                    self.data.interval)
 
+    def getDate(self, date):
+        if self.data.pretty_date:
+            # Returns human readable date
+            date_utility = getUtility(IPrettyDate)
+            date = date_utility.date(date)
+
+        return date
+        
 
 class AddForm(base.AddForm):
     """Portlet add form.
