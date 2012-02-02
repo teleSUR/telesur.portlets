@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: telesur.portlets\n"
-"POT-Creation-Date: 2012-01-27 07:57+0000\n"
-"PO-Revision-Date: 2012-01-27 04:58-0300\n"
+"POT-Creation-Date: 2012-02-02 18:56+0000\n"
+"PO-Revision-Date: 2012-02-02 15:57-0300\n"
 "Last-Translator: Franco Pellegrini\n"
 "Language-Team: Spanish <>\n"
 "MIME-Version: 1.0\n"
@@ -35,6 +35,10 @@ msgid "A portlet that shows latest NITFs from different collections"
 msgstr "Un portlet para mostrar los ultimos NITFs desde distintas colecciones"
 
 #: telesur/portlets/profiles/default/portlets.xml
+msgid "A portlet that shows latest Polls"
+msgstr "Un portlet para mostrar las encuestas más recientes"
+
+#: telesur/portlets/profiles/default/portlets.xml
 msgid "A portlet with several util links"
 msgstr "Un portlet con varios Vínculos útiles"
 
@@ -42,26 +46,27 @@ msgstr "Un portlet con varios Vínculos útiles"
 msgid "Add latest NITF Portlet"
 msgstr "Agregar portlet de NITF recientes"
 
-#: telesur/portlets/popular_threads.py:44
+#: telesur/portlets/popular_threads.py:54
 msgid "Choices: 1h, 6h, 12h, 1d, 7d, 30d, 90d"
 msgstr "Opciones: 1h, 6h, 12h, 1d, 7d, 30d, 90d"
 
-#: telesur/portlets/hot_threads.py:36
-#: telesur/portlets/popular_threads.py:33
+#: telesur/portlets/hot_threads.py:44
+#: telesur/portlets/popular_threads.py:43
 msgid "Forum"
 msgstr "Foro"
 
-#: telesur/portlets/hot_threads.py:31
-#: telesur/portlets/popular_threads.py:28
+#: telesur/portlets/hot_threads.py:39
+#: telesur/portlets/latest_polls.py:28
+#: telesur/portlets/popular_threads.py:38
 msgid "Header"
 msgstr "Cabecera"
 
-#: telesur/portlets/hot_threads.py:82
+#: telesur/portlets/hot_threads.py:90
 #: telesur/portlets/profiles/default/portlets.xml
 msgid "Hot Threads"
 msgstr "Temas Recomendados"
 
-#: telesur/portlets/popular_threads.py:43
+#: telesur/portlets/popular_threads.py:53
 msgid "Interval"
 msgstr "Intervalo"
 
@@ -70,36 +75,47 @@ msgstr "Intervalo"
 msgid "Latest NITF"
 msgstr "NITF recientes"
 
+#: telesur/portlets/profiles/default/portlets.xml
+msgid "Latest Polls"
+msgstr "Encuestas recientes"
+
+#: telesur/portlets/latest_polls.py:71
+msgid "Latest polls"
+msgstr "Encuestas recientes"
+
 #: telesur/portlets/latest_nitf.py:38
 msgid "Limit"
 msgstr "Límite"
 
-#: telesur/portlets/hot_threads.py:41
-#: telesur/portlets/popular_threads.py:38
+#: telesur/portlets/hot_threads.py:49
+#: telesur/portlets/latest_polls.py:33
+#: telesur/portlets/popular_threads.py:48
 msgid "Maximum results"
 msgstr "Resultados máximos"
 
-#: telesur/portlets/popular_threads.py:80
+#: telesur/portlets/popular_threads.py:98
 #: telesur/portlets/profiles/default/portlets.xml
 msgid "Popular Threads"
 msgstr "Temas populares"
 
-#: telesur/portlets/hot_threads.py:46
+#: telesur/portlets/hot_threads.py:54
 #: telesur/portlets/latest_nitf.py:46
+#: telesur/portlets/popular_threads.py:59
 msgid "Pretty dates"
 msgstr "Fechas mejoradas"
 
-#: telesur/portlets/hot_threads.py:47
+#: telesur/portlets/hot_threads.py:55
 #: telesur/portlets/latest_nitf.py:47
+#: telesur/portlets/popular_threads.py:60
 msgid "Show dates in a pretty format (ie. '4 hours ago')."
 msgstr "Mostrar fechas en un formato mejorado (ej. 'hace 4 horas')."
 
-#: telesur/portlets/hot_threads.py:37
+#: telesur/portlets/hot_threads.py:45
 msgid "Specify the forum you wish to obtain the hot threads from."
 msgstr ""
 "Especifica el foro desde el cual quisiera obtener contenido recomendado."
 
-#: telesur/portlets/popular_threads.py:34
+#: telesur/portlets/popular_threads.py:44
 msgid "Specify the forum you wish to obtain the popular threads from."
 msgstr "Especifica el foro desde el cual quisiera obtener los temas populares."
 
@@ -111,13 +127,15 @@ msgstr ""
 "Especificar el número máximo de resultados para mostrar. Dejar vacío para "
 "todos"
 
-#: telesur/portlets/hot_threads.py:32
-#: telesur/portlets/popular_threads.py:29
+#: telesur/portlets/hot_threads.py:40
+#: telesur/portlets/latest_polls.py:29
+#: telesur/portlets/popular_threads.py:39
 msgid "The header for the portlet. Leave empty for none."
 msgstr "La cabecera del portlet. Dejar vacío para ninguna."
 
-#: telesur/portlets/hot_threads.py:42
-#: telesur/portlets/popular_threads.py:39
+#: telesur/portlets/hot_threads.py:50
+#: telesur/portlets/latest_polls.py:34
+#: telesur/portlets/popular_threads.py:49
 msgid "The maximum results number."
 msgstr "El número máximo de resultados."
 
