@@ -30,6 +30,23 @@ Descargas
 
 Usted puede encontrar la versión de desarrollo del paquete ``telesur.portlets`` en el `repositorio desarrollotv`_ en Github.com.
 
+
+Autor(es) Original(es)
+======================
+
+* Franco Pellegrini aka frapell
+
+Colaboraciones impresionantes
+=============================
+
+* Héctor Velarde aka hvelarde
+
+* Leonardo J .Caballero G. aka macagua
+
+* nueces
+
+Par una lista actualizada de todo los colaboradores visite: https://github.com/desarrollotv/telesur.portlets/contributors
+
 .. _sitio Web de teleSUR: http://telesurtv.net/
 .. _disqus-python: http://pypi.python.org/pypi/disqus-python
 .. _telesur.portlets: https://github.com/desarrollotv/telesur.portlets
