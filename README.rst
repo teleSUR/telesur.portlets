@@ -43,7 +43,7 @@ Colaboraciones impresionantes
 
 * Leonardo J .Caballero G. aka macagua
 
-* nueces
+* Juan A. Diaz aka nueces
 
 Par una lista actualizada de todo los colaboradores visite: https://github.com/desarrollotv/telesur.portlets/contributors
 
