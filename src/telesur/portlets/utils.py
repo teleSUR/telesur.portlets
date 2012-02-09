@@ -18,6 +18,8 @@ from Products.CMFCore.utils import getToolByName
 from telesur.portlets.config import PROJECTNAME
 from telesur.registry.interfaces import IDisqusSettings
 
+logger = logging.getLogger(PROJECTNAME)
+
 
 def disqus_list_hot(forum, max_results):
     """ Obtiene un listado de los threads más recomendados.
@@ -56,19 +58,32 @@ def disqus_list_popular(forum, max_results, interval):
     return get_disqus_results(url)
 
 
-def get_disqus_results(url):
-    """ Consulta el API de Disqus utilizando el url pasado como
-        parametro.
+def fileopen(filename):
+    """ helper function para abrir archivos durante las pruebas.
     """
-    logger = logging.getLogger(PROJECTNAME)
-    result = []
+    from os.path import dirname
+    return open('%s/tests/%s' % (dirname(__file__), filename))
 
+
+def get_disqus_results(url):
+    """ Consulta el API de Disqus utilizando el url pasado como parámetro.
+    """
+    # HACK: para poder hacer pruebas unitarias introducimos la posibilidad de
+    # abrir url y archivos; si existe scheme, es un url; de lo contario es un
+    # archivo
+    url_parse = urlparse(url)
+    is_url = url_parse.scheme != ''
+
+    result = []
     try:
-        request = urllib.urlopen(url)
-    except IOError, e:
-        logger.error('urlopen error trying to access to the Disqus site - '\
-                     'errno: "%i" - message: "%s".' \
-                     % (e.strerror.errno, e.strerror.strerror))
+        if is_url:  # funcionamiento normal: abrimos el url
+            request = urllib.urlopen(url)
+        else:       # funcionamiento alterno: abrimos un archivo
+            request = fileopen(url)
+    except IOError:
+        logger.error('IOError accessing %s://%s%s' % (url_parse.scheme,
+                                                      url_parse.netloc,
+                                                      url_parse.path))
     else:
         response = request.read()
         results = json.loads(response)
@@ -82,9 +97,9 @@ def get_disqus_results(url):
             result = results['response']
 
     finally:
-        #HACK: El API de Disqus no retorna los datos en forma correcta.
-        # Este código obtiene el titulo en base a la url regresada por
-        # Disqus y luego buscan en el catalogo construyendo la url desde
+        # HACK: El API de Disqus no retorna los datos en forma correcta.
+        # Este código obtiene el titulo con base en la url regresada por
+        # Disqus y luego busca en el catalogo construyendo la url desde
         # el id del objeto hacia el site root. Además reemplaza la url
         # por la url usada para acceder al sitio.
         site = getSite()
