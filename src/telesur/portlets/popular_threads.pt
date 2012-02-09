@@ -17,7 +17,7 @@
   <dd class="portletItem">
     <div class="result-item" tal:repeat="result results">
       <div class="thread-content">
-        <a class="thread-title" href="#" target="_top"
+        <a class="thread-title" href="#"
            tal:attributes="href python:result['link']">
           <span tal:content="python:result['title']" />
         </a>
