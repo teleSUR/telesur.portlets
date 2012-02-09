@@ -67,6 +67,12 @@ class DisqusUtilsTest(unittest.TestCase):
         self.assertEqual(results[7]['title'], 'Hot 7')
         self.assertEqual(results[8]['title'], 'Hot 8')
         self.assertEqual(results[9]['title'], 'Hot 9')
+        # si algún objeto fue borrado, no se toma en cuenta en los resultados
+        self.folder.manage_delObjects([hot0])
+        results = get_disqus_results('listHot.json')
+        self.assertEqual(len(results), 9)
+        # si hay algún error se retorna una lista vacía
+        self.assertEqual(get_disqus_results('listHot.error.json'), [])
 
     def test_disqus_list_popular(self):
         # necesitamos crear los objetos equivalentes primero para poder
@@ -93,6 +99,12 @@ class DisqusUtilsTest(unittest.TestCase):
         self.assertEqual(results[7]['title'], 'Popular 7')
         self.assertEqual(results[8]['title'], 'Popular 8')
         self.assertEqual(results[9]['title'], 'Popular 9')
+        # si algún objeto fue borrado, no se toma en cuenta en los resultados
+        self.folder.manage_delObjects([popular0])
+        results = get_disqus_results('listPopular.json')
+        self.assertEqual(len(results), 9)
+        # si hay algún error se retorna una lista vacía
+        self.assertEqual(get_disqus_results('listPopular.error.json'), [])
 
 
 def test_suite():
