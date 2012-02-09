@@ -2,6 +2,7 @@
 
 import unittest2 as unittest
 
+import os
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 
@@ -30,6 +31,8 @@ popular7 = 'cumbre-del-alba-continua-este-domingo-revision-de-temas-pendientes'
 popular8 = 'guatemala-respalda-a-argentina-en-reclamo-por-soberania-de-las-islas-malvinas'
 popular9 = 'diez-razones-por-las-que-estados-unidos-ya-no-es-la-tierra-de-la-libertad'
 
+PATHNAME = '%s/' % os.path.dirname(__file__)
+
 
 class DisqusUtilsTest(unittest.TestCase):
 
@@ -55,7 +58,7 @@ class DisqusUtilsTest(unittest.TestCase):
         self.folder.invokeFactory('News Item', hot7, title='Hot 7')
         self.folder.invokeFactory('News Item', hot8, title='Hot 8')
         self.folder.invokeFactory('News Item', hot9, title='Hot 9')
-        results = get_disqus_results('listHot.json')
+        results = get_disqus_results(PATHNAME + 'listHot.json')
         self.assertEqual(len(results), 10)
         self.assertEqual(results[0]['title'], 'Hot 0')
         self.assertEqual(results[1]['title'], 'Hot 1')
@@ -69,7 +72,7 @@ class DisqusUtilsTest(unittest.TestCase):
         self.assertEqual(results[9]['title'], 'Hot 9')
         # si algún objeto fue borrado, no se toma en cuenta en los resultados
         self.folder.manage_delObjects([hot0])
-        results = get_disqus_results('listHot.json')
+        results = get_disqus_results(PATHNAME + 'listHot.json')
         self.assertEqual(len(results), 9)
         # si hay algún error se retorna una lista vacía
         self.assertEqual(get_disqus_results('listHot.error.json'), [])
@@ -87,7 +90,7 @@ class DisqusUtilsTest(unittest.TestCase):
         self.folder.invokeFactory('News Item', popular7, title='Popular 7')
         self.folder.invokeFactory('News Item', popular8, title='Popular 8')
         self.folder.invokeFactory('News Item', popular9, title='Popular 9')
-        results = get_disqus_results('listPopular.json')
+        results = get_disqus_results(PATHNAME + 'listPopular.json')
         self.assertEqual(len(results), 10)
         self.assertEqual(results[0]['title'], 'Popular 0')
         self.assertEqual(results[1]['title'], 'Popular 1')
@@ -101,7 +104,7 @@ class DisqusUtilsTest(unittest.TestCase):
         self.assertEqual(results[9]['title'], 'Popular 9')
         # si algún objeto fue borrado, no se toma en cuenta en los resultados
         self.folder.manage_delObjects([popular0])
-        results = get_disqus_results('listPopular.json')
+        results = get_disqus_results(PATHNAME + 'listPopular.json')
         self.assertEqual(len(results), 9)
         # si hay algún error se retorna una lista vacía
         self.assertEqual(get_disqus_results('listPopular.error.json'), [])

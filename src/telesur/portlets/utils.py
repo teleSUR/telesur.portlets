@@ -56,31 +56,17 @@ def disqus_list_popular(forum, max_results, interval):
     return get_disqus_results(url)
 
 
-def fileopen(filename):
-    """ helper function para abrir archivos durante las pruebas.
-    """
-    from os.path import dirname
-    return open('%s/tests/%s' % (dirname(__file__), filename))
-
-
 def get_disqus_results(url):
     """ Consulta el API de Disqus utilizando el url pasado como parámetro.
     """
-    # HACK: para poder hacer pruebas unitarias introducimos la posibilidad de
-    # abrir url y archivos; si existe scheme, es un url; de lo contario es un
-    # archivo
-    url_parse = urlparse(url)
-    is_url = url_parse.scheme != ''
-
-    if is_url:  # funcionamiento normal: abrimos el url
-        try:
-            request = urllib.urlopen(url)
-        except IOError:
-            logger.error('IOError accessing %s://%s%s' % (url_parse.scheme,
-                                                          url_parse.netloc,
-                                                          url_parse.path))
-    else:       # funcionamiento alterno: abrimos un archivo
-        request = fileopen(url)
+    try:
+        request = urllib.urlopen(url)
+    except IOError:
+        url_parse = urlparse(url)
+        logger.error('IOError accessing %s://%s%s' % (url_parse.scheme,
+                                                      url_parse.netloc,
+                                                      url_parse.path))
+        return []
 
     response = request.read()
     disqus = json.loads(response)
