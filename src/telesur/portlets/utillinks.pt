@@ -32,5 +32,13 @@
       </a>
     </div>
   </dd>
+  <dd class="portletItem">
+    <div class="administrar-portadas" tal:condition="can_add_news">
+      <a href="#"
+         tal:attributes="href string:@@cover-controls?admin_portadas" class="link-overlay">
+        Administrar Portadas
+      </a>
+    </div>
+  </dd>
 </dl>
 </html>
