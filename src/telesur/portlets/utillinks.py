@@ -79,6 +79,9 @@ class Renderer(base.Renderer):
 
         return can_add
 
+    def canManageCovers(self):
+        can_manage = checkPermission('telesur.theme.coverAddable', self.context)
+
     def canAddPolls(self):
         can_add = self._checkPermInFolder('collective.polls.AddPoll',
                                           'encuestas')

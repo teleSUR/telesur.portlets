@@ -4,7 +4,8 @@
       tal:omit-tag="">
 <dl class="portlet utilLinks" tal:condition="can_add_news|can_add_polls"
     tal:define="can_add_news view/canAddNews;
-                can_add_polls view/canAddPolls;"
+                can_add_polls view/canAddPolls;
+                can_manage_covers view/canManageCovers;"
     i18n:domain="telesur.portlets">
 
   <dd class="portletItem"
@@ -33,7 +34,7 @@
     </div>
   </dd>
   <dd class="portletItem">
-    <div class="administrar-portadas" tal:condition="can_add_news">
+    <div class="administrar-portadas" tal:condition="can_manage_covers">
       <a href="#"
          tal:attributes="href string:@@cover-controls?admin_portadas" class="link-overlay">
         Administrar Portadas
