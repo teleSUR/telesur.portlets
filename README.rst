@@ -28,7 +28,7 @@ Usted puede leer el archivo ``INSTALL.txt`` dentro del directorio ``docs`` de es
 Descargas
 =========
 
-Usted puede encontrar la versión de desarrollo del paquete ``telesur.portlets`` en el `repositorio desarrollotv`_ en Github.com.
+Usted puede encontrar la versión de desarrollo del paquete ``telesur.portlets`` en el `repositorio teleSUR`_ en Github.com.
 
 
 Autor(es) Original(es)
@@ -49,5 +49,5 @@ Par una lista actualizada de todo los colaboradores visite: https://github.com/t
 
 .. _sitio Web de teleSUR: http://telesurtv.net/
 .. _disqus-python: http://pypi.python.org/pypi/disqus-python
-.. _telesur.portlets: https://github.com/teleSUR/telesur.portlets
+.. _repositorio teleSUR: https://github.com/teleSUR/telesur.portlets
 
