@@ -45,9 +45,9 @@ Colaboraciones impresionantes
 
 * Juan A. Diaz aka nueces
 
-Par una lista actualizada de todo los colaboradores visite: https://github.com/desarrollotv/telesur.portlets/contributors
+Par una lista actualizada de todo los colaboradores visite: https://github.com/teleSUR/telesur.portlets/contributors
 
 .. _sitio Web de teleSUR: http://telesurtv.net/
 .. _disqus-python: http://pypi.python.org/pypi/disqus-python
-.. _telesur.portlets: https://github.com/desarrollotv/telesur.portlets
+.. _telesur.portlets: https://github.com/teleSUR/telesur.portlets
 
