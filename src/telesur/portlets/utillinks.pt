@@ -2,7 +2,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       tal:omit-tag="">
-<dl class="portlet utilLinks" tal:condition="can_add_news|can_add_polls|can_manage_covers"
+<dl class="portlet utilLinks" tal:condition="python:can_add_news or can_add_polls or can_manage_covers"
     tal:define="can_add_news view/canAddNews;
                 can_add_polls view/canAddPolls;
                 can_manage_covers view/canManageCovers;"
