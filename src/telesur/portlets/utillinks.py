@@ -76,7 +76,6 @@ class Renderer(base.Renderer):
     def canAddNews(self):
         can_add = self._checkPermInFolder('collective.nitf.AddNewsArticle',
                                           'articulos')
-
         return can_add
 
     def canManageCovers(self):
@@ -86,7 +85,6 @@ class Renderer(base.Renderer):
     def canAddPolls(self):
         can_add = self._checkPermInFolder('collective.polls.AddPoll',
                                           'encuestas')
-
         return can_add
 
 
