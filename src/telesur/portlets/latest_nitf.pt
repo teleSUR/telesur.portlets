@@ -30,12 +30,12 @@
              Title
             </span>
             <span class="portletItemDetails"
-                tal:content="python:toLocalizedTime(obj.Date)"
+                tal:content="python:toLocalizedTime(obj.effective)"
                 tal:condition="not:view/data/pretty_date">
                 Date
             </span>
             <span class="portletItemDetails"
-                tal:content="python:view.getPrettyDate(obj.Date)"
+                tal:content="python:view.getPrettyDate(obj.effective)"
                 tal:condition="view/data/pretty_date">
                 Date
             </span>
