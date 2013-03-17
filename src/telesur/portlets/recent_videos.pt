@@ -1,0 +1,58 @@
+<dl class="portlet portletCollection portlet-latest-nitf"
+    i18n:domain="telesur.portlets">
+
+<div class="video-accordion">
+        <style type="text/css">
+            .tile-gallery-item,
+.tile-video-item {
+    padding:10px 20px 15px;
+    border-bottom: 6px solid #cecece;
+}
+
+.tile-gallery-item.open,
+.tile-video-item.open {
+    background-color: #f1f1f1;
+}
+
+.tile-video-video {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.tile-video-video.open {
+    display: block;
+}
+        </style>
+          <script type="text/javascript">
+          $(document).ready(function() {
+              $(".video-accordion").tabs(
+                     ".video-accordion div.tile-video-video",
+                     {tabs: '.tile-video-data', effect: 'slide', initialIndex: null}
+                   );
+            $(".report-video").each(function () {
+              var report = $(this);
+              var slug = report.attr("data-slug");
+              report.omplayer({
+                slug: slug,
+                width: 200, height: 150,
+                style: 1
+              });
+            });
+
+          });
+          </script>
+            <tal:items repeat="brain view/results_video">
+            <div
+                tal:attributes="class python:'tile-video-item open' if repeat['brain'].index == 0 else 'tile-video-item'">
+                <div class="tile-video-video"
+                    tal:attributes="class python:'tile-video-video open' if repeat['brain'].index == 0 else 'tile-video-video'">
+                <div class="report-video" tal:attributes="data-slug brain/slug">
+                </div>
+                </div>
+                <div class="tile-video-data" >
+                    <div class="tile-video-title" tal:content="brain/titulo" />
+                </div>
+            </div>
+            </tal:items>
+        </div>
+</dl>
