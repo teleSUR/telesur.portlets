@@ -89,4 +89,15 @@
          editview=".recent_videos.EditForm"
          />
 
+    <plone:portlet
+         name="telesur.portlets.NitfByKeyword"
+         interface=".nitf_tag.IFilterKeywordNITFPortlet"
+         assignment=".nitf_tag.Assignment"
+         view_permission="zope2.View"
+         edit_permission="cmf.ManagePortal"
+         renderer=".nitf_tag.Renderer"
+         addview=".nitf_tag.AddForm"
+         editview=".nitf_tag.EditForm"
+         />
+
 </configure>

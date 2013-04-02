@@ -45,10 +45,18 @@
                     description"
    />
 
-   <portlet
+<portlet
    addview="telesur.portlets.RecentVideos"
    title="Recent Videos"
    description="A portlet that shows Recent videos filtered by a tag"
+   i18n:attributes="title;
+                    description"
+   />
+
+<portlet
+   addview="telesur.portlets.NitfByKeyword"
+   title="Nitf filtered by keyword"
+   description="A portlet that shows lastest news filtered by a tag"
    i18n:attributes="title;
                     description"
    />
