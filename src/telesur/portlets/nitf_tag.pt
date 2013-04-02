@@ -1,0 +1,49 @@
+<dl class="portlet portletCollection portlet-latest-nitf"
+    i18n:domain="telesur.portlets"
+    tal:define="plone_view context/@@plone;
+                toLocalizedTime nocall:plone_view/toLocalizedTime;
+                viewActions here/portal_properties/site_properties/typesUseViewActionInListings|python:();
+                getIcon nocall:plone_view/getIcon;">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+            <span tal:content="view/getHeader" />
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <tal:events tal:repeat="obj view/results">
+    <dd class="portletItem"
+        tal:define="oddrow repeat/obj/odd;
+                    useView    python:obj.portal_type in viewActions;
+                    itemUrl    python:useView and obj.getURL() + '/view' or obj.getURL();
+                    item_icon python:getIcon(obj);"
+
+        tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+        <a href="#"
+           class="tile"
+           tal:attributes="href itemUrl;
+                           title obj/Description">
+            <img tal:replace="structure item_icon/html_tag" />
+            <span tal:replace="obj/pretty_title_or_id">
+             Title
+            </span>
+            <span class="portletItemDetails"
+                tal:content="python:toLocalizedTime(obj.effective)"
+                tal:condition="not:view/data/pretty_date">
+                Date
+            </span>
+            <span class="portletItemDetails"
+                tal:content="python:view.getPrettyDate(obj.effective)"
+                tal:condition="view/data/pretty_date">
+                Date
+            </span>
+        </a>
+    </dd>
+    </tal:events>
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>
