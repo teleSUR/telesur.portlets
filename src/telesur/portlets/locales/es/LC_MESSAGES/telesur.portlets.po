@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: telesur.portlets\n"
-"POT-Creation-Date: 2012-02-02 18:56+0000\n"
+"POT-Creation-Date: 2013-05-22 20:09+0000\n"
 "PO-Revision-Date: 2012-02-02 15:57-0300\n"
 "Last-Translator: Franco Pellegrini\n"
 "Language-Team: Spanish <>\n"
@@ -31,6 +31,14 @@ msgid "A portlet that lists popular threads"
 msgstr "Un portlet que lista los temas populares"
 
 #: telesur/portlets/profiles/default/portlets.xml
+msgid "A portlet that shows Recent videos filtered by a tag"
+msgstr "Portlet que muestra los videos recientes filtrados por tag"
+
+#: telesur/portlets/profiles/default/portlets.xml
+msgid "A portlet that shows lastest news filtered by a tag"
+msgstr "Portlet que muestra las ultimas noticias filtradas por tag"
+
+#: telesur/portlets/profiles/default/portlets.xml
 msgid "A portlet that shows latest NITFs from different collections"
 msgstr "Un portlet para mostrar los ultimos NITFs desde distintas colecciones"
 
@@ -46,9 +54,17 @@ msgstr "Un portlet con varios Vínculos útiles"
 msgid "Add latest NITF Portlet"
 msgstr "Agregar portlet de NITF recientes"
 
+#: telesur/portlets/nitf_tag.py:130
+msgid "Add latest NITF Portlet Filtered by Keyword"
+msgstr "Agregar portlet de ultimas noticias filtradas por tag"
+
 #: telesur/portlets/popular_threads.py:54
 msgid "Choices: 1h, 6h, 12h, 1d, 7d, 30d, 90d"
 msgstr "Opciones: 1h, 6h, 12h, 1d, 7d, 30d, 90d"
+
+#: telesur/portlets/nitf_tag.py:27
+msgid "Filter Nitf by keyword"
+msgstr "Filtrar nitf por tag"
 
 #: telesur/portlets/hot_threads.py:44
 #: telesur/portlets/popular_threads.py:43
@@ -71,6 +87,7 @@ msgid "Interval"
 msgstr "Intervalo"
 
 #: telesur/portlets/latest_nitf.py:76
+#: telesur/portlets/nitf_tag.py:70
 #: telesur/portlets/profiles/default/portlets.xml
 msgid "Latest NITF"
 msgstr "NITF recientes"
@@ -84,6 +101,8 @@ msgid "Latest polls"
 msgstr "Encuestas recientes"
 
 #: telesur/portlets/latest_nitf.py:38
+#: telesur/portlets/nitf_tag.py:31
+#: telesur/portlets/recent_videos.py:34
 msgid "Limit"
 msgstr "Límite"
 
@@ -93,6 +112,10 @@ msgstr "Límite"
 msgid "Maximum results"
 msgstr "Resultados máximos"
 
+#: telesur/portlets/profiles/default/portlets.xml
+msgid "Nitf filtered by keyword"
+msgstr "Nitf filtrados por tag"
+
 #: telesur/portlets/popular_threads.py:98
 #: telesur/portlets/profiles/default/portlets.xml
 msgid "Popular Threads"
@@ -100,32 +123,44 @@ msgstr "Temas populares"
 
 #: telesur/portlets/hot_threads.py:54
 #: telesur/portlets/latest_nitf.py:46
-#: telesur/portlets/popular_threads.py:59
+#: telesur/portlets/nitf_tag.py:38
 msgid "Pretty dates"
 msgstr "Fechas mejoradas"
 
+#: telesur/portlets/profiles/default/portlets.xml
+msgid "Recent Videos"
+msgstr "Videos recientes riltrados por tag"
+
+#: telesur/portlets/recent_videos.py:71
+msgid "Recent videos"
+msgstr "Videos recientes riltrados por tag"
+
 #: telesur/portlets/hot_threads.py:55
 #: telesur/portlets/latest_nitf.py:47
-#: telesur/portlets/popular_threads.py:60
+#: telesur/portlets/nitf_tag.py:39
 msgid "Show dates in a pretty format (ie. '4 hours ago')."
 msgstr "Mostrar fechas en un formato mejorado (ej. 'hace 4 horas')."
 
 #: telesur/portlets/hot_threads.py:45
 msgid "Specify the forum you wish to obtain the hot threads from."
-msgstr ""
-"Especifica el foro desde el cual quisiera obtener contenido recomendado."
+msgstr "Especifica el foro desde el cual quisiera obtener contenido recomendado."
 
 #: telesur/portlets/popular_threads.py:44
 msgid "Specify the forum you wish to obtain the popular threads from."
 msgstr "Especifica el foro desde el cual quisiera obtener los temas populares."
 
 #: telesur/portlets/latest_nitf.py:39
-msgid ""
-"Specify the maximum number of items to show in the portlet. Leave this blank "
-"to show all items."
+#: telesur/portlets/nitf_tag.py:32
+msgid "Specify the maximum number of items to show in the portlet. Leave this blank to show all items."
+msgstr "Especificar el número máximo de resultados para mostrar. Dejar vacío para todos"
+
+#: telesur/portlets/recent_videos.py:30
+msgid "Tag"
 msgstr ""
-"Especificar el número máximo de resultados para mostrar. Dejar vacío para "
-"todos"
+
+#: telesur/portlets/recent_videos.py:31
+msgid "Tag to filter the videos "
+msgstr "Tag para filtrar los videos"
 
 #: telesur/portlets/hot_threads.py:40
 #: telesur/portlets/latest_polls.py:29
@@ -139,29 +174,33 @@ msgstr "La cabecera del portlet. Dejar vacío para ninguna."
 msgid "The maximum results number."
 msgstr "El número máximo de resultados."
 
+#: telesur/portlets/nitf_tag.py:143
+msgid "This portlet display a list of latest NITF filtered by Keyword"
+msgstr "Este portlet muestra una lista de las ultimas nitf filtradas por tag"
+
+#: telesur/portlets/nitf_tag.py:131
+msgid "This portlet display a list of latest NITF filtered by a Keyword"
+msgstr "Este portlet muestra una lista de las ultimas nitf filtradas por tag"
+
 #: telesur/portlets/latest_nitf.py:177
-msgid ""
-"This portlet display a list of latest NITF from a Collection. It will select "
-"between different collections based on the current context."
-msgstr ""
-"Este portlet muestra una lista de los últimos NITF desde una colección. "
-"Selecciona entre distintas colecciones basado en el contexto actual."
+msgid "This portlet display a list of latest NITF from a Collection. It will select between different collections based on the current context."
+msgstr "Este portlet muestra una lista de los últimos NITF desde una colección. Selecciona entre distintas colecciones basado en el contexto actual."
 
 #: telesur/portlets/latest_nitf.py:191
-msgid ""
-"This portlet display a list of latest NITF from a Collection. It will select "
-"between different collectionsbased on the current context."
-msgstr ""
-"Este portlet muestra una lista de los últimos NITF desde una colección. "
+msgid "This portlet display a list of latest NITF from a Collection. It will select between different collectionsbased on the current context."
+msgstr "Este portlet muestra una lista de los últimos NITF desde una colección. "
 
 #: telesur/portlets/profiles/default/portlets.xml
 #: telesur/portlets/utillinks.py:49
 msgid "Util links"
 msgstr "Vínculos útiles"
 
+#: telesur/portlets/nitf_tag.py:26
+msgid "keyword"
+msgstr "tag"
+
 #. Default: "More…"
 #: telesur/portlets/latest_nitf.pt:48
 msgid "more_url"
 msgstr "Más..."
-
 

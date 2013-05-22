@@ -38,6 +38,9 @@ setup(name='telesur.portlets',
         'setuptools',
         'disqus-python>=0.4.1',
         'telesur.registry',
+        'collective.prettydate',
+        'collective.nitf==1.0a1',
+        'openmultimedia.api'
       ],
       extras_require={
         'test': ['plone.app.testing'],
