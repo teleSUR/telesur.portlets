@@ -48,7 +48,14 @@ class ILatestNITFPortlet(IPortletDataProvider):
         default=True,
         required=False)
 
-    
+
+    anonymous_only = schema.Bool(
+        title=_(u'Anonymous only'),
+        description=_(u"Display this portlet only for anonymous users."),
+        default=True,
+        required=False)
+
+
 class Assignment(base.Assignment):
     """
     Portlet assignment.
@@ -60,13 +67,16 @@ class Assignment(base.Assignment):
 
     limit = 10
     pretty_date = True
+    anonymous_only = True
 
     def __init__(self,
                  limit = 10,
-                 pretty_date=True):
+                 pretty_date=True,
+                 anonymous_only=True):
 
         self.limit = limit
         self.pretty_date = pretty_date
+        self.anonymous_only = anonymous_only
 
     @property
     def title(self):
@@ -86,7 +96,12 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return len(self.results())
+        portal_state = getMultiAdapter((self.context, self.request),
+                                       name=u'plone_portal_state')
+        if self.data.anonymous_only and not portal_state.anonymous():
+            return False
+
+        return len(self.results()) > 0
 
     def collection_url(self):
         collection = self.collection()

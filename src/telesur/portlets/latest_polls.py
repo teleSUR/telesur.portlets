@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from zope.component import getUtility
+from zope.component import getMultiAdapter
 from Products.CMFCore.utils import getToolByName
 from time import time
 
@@ -10,12 +11,15 @@ from zope.interface import implements
 
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
+
+from plone.memoize.instance import memoize
+
 #from collective.prettydate.interfaces import IPrettyDate
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from telesur.portlets import _
-            
+
 
 class ILatestPolls(IPortletDataProvider):
     """A portlet
@@ -35,6 +39,12 @@ class ILatestPolls(IPortletDataProvider):
                              required=True,
                              default=5)
 
+    anonymous_only = schema.Bool(
+        title=_(u'Anonymous only'),
+        description=_(u"Display this portlet only for anonymous users."),
+        default=True,
+        required=False)
+
     #pretty_date = schema.Bool(title=_(u'Pretty dates'),
                               #description=_(u"Show dates in a pretty format (ie. '4 hours ago')."),
                               #default=True,
@@ -52,15 +62,19 @@ class Assignment(base.Assignment):
 
     max_results = 5
     header = None
+    anonymous_only = True
     #pretty_date = True
+
 
     def __init__(self,
                  max_results,
-                 header=None):
+                 header=None,
+                 anonymous_only=True):
                  #pretty_date=True):
 
         self.max_results = max_results
         self.header = header
+        self.anonymous_only = anonymous_only
         #self.pretty_date = pretty_date
 
     @property
@@ -81,12 +95,22 @@ class Renderer(base.Renderer):
 
     render = ViewPageTemplateFile('latest_polls.pt')
 
+    @property
+    def available(self):
+        portal_state = getMultiAdapter((self.context, self.request),
+                                       name=u'plone_portal_state')
+        if self.data.anonymous_only and not portal_state.anonymous():
+            return False
+
+        return len(self.getLatestPolls()) > 0
+
     def getHeader(self):
         """
         Returns the header for the portlet
         """
         return self.data.header
 
+    @memoize
     def getLatestPolls(self):
         """
         """
@@ -101,7 +125,7 @@ class Renderer(base.Renderer):
             ## Returns human readable date
             #date_utility = getUtility(IPrettyDate)
             #date = date_utility.date(date)
-            
+
         #return date
 
 
