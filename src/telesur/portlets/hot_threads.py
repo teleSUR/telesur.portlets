@@ -6,6 +6,7 @@ from time import time
 from zope import schema
 from zope.formlib import form
 from zope.interface import implements
+from zope.component import getMultiAdapter
 
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
@@ -26,7 +27,7 @@ def cache_key_simple(func, var):
             var.data.forum,
             var.data.max_results,
             var.data.pretty_date)
-            
+
 
 class IHotThreads(IPortletDataProvider):
     """A portlet
@@ -56,6 +57,12 @@ class IHotThreads(IPortletDataProvider):
                               default=True,
                               required=False)
 
+    anonymous_only = schema.Bool(
+        title=_(u'Anonymous only'),
+        description=_(u"Display this portlet only for anonymous users."),
+        default=True,
+        required=False)
+
 
 class Assignment(base.Assignment):
     """Portlet assignment.
@@ -70,17 +77,20 @@ class Assignment(base.Assignment):
     max_results = 5
     header = None
     pretty_date = True
+    anonymous_only = True
 
     def __init__(self,
                  max_results,
                  forum,
                  header=None,
-                 pretty_date=True):
+                 pretty_date=True,
+                 anonymous_only=True):
 
         self.forum = forum
         self.max_results = max_results
         self.header = header
         self.pretty_date = pretty_date
+        self.anonymous_only = anonymous_only
 
     @property
     def title(self):
@@ -100,6 +110,15 @@ class Renderer(base.Renderer):
 
     render = ViewPageTemplateFile('hot_threads.pt')
 
+    @property
+    def available(self):
+        portal_state = getMultiAdapter((self.context, self.request),
+                                       name=u'plone_portal_state')
+        if self.data.anonymous_only and not portal_state.anonymous():
+            return False
+
+        return len(self.getPopularPosts()) > 0
+
     def getHeader(self):
         """
         Returns the header for the portlet
@@ -117,7 +136,7 @@ class Renderer(base.Renderer):
             # Returns human readable date
             date_utility = getUtility(IPrettyDate)
             date = date_utility.date(date)
-            
+
         return date
 
 

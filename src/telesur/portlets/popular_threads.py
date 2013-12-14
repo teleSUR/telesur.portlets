@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from zope.component import getUtility
+from zope.component import getMultiAdapter
 from time import time
 
 from zope import schema
@@ -61,7 +62,13 @@ class IPopularThreads(IPortletDataProvider):
                               default=True,
                               required=False)
 
-                              
+    anonymous_only = schema.Bool(
+        title=_(u'Anonymous only'),
+        description=_(u"Display this portlet only for anonymous users."),
+        default=True,
+        required=False)
+
+
 class Assignment(base.Assignment):
     """Portlet assignment.
 
@@ -76,19 +83,22 @@ class Assignment(base.Assignment):
     header = None
     interval = u"7d"
     pretty_date=True
+    anonymous_only=True
 
     def __init__(self,
                  max_results,
                  interval,
                  forum,
                  header=None,
-                 pretty_date=True):
+                 pretty_date=True,
+                 anonymous_only=True):
 
         self.forum = forum
         self.max_results = max_results
         self.header = header
         self.interval = interval
         self.pretty_date = pretty_date
+        self.anonymous_only = anonymous_only
 
     @property
     def title(self):
@@ -107,6 +117,15 @@ class Renderer(base.Renderer):
     """
 
     render = ViewPageTemplateFile('popular_threads.pt')
+
+    @property
+    def available(self):
+        portal_state = getMultiAdapter((self.context, self.request),
+                                       name=u'plone_portal_state')
+        if self.data.anonymous_only and not portal_state.anonymous():
+            return False
+
+        return len(self.getPopularPosts()) > 0
 
     def getHeader(self):
         """
@@ -129,7 +148,7 @@ class Renderer(base.Renderer):
             date = date_utility.date(date)
 
         return date
-        
+
 
 class AddForm(base.AddForm):
     """Portlet add form.
