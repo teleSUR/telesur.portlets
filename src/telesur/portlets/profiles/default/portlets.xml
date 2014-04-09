@@ -44,5 +44,11 @@
    i18n:attributes="title;
                     description"
    />
-   
+
+
+ <portletmanager
+   name="telesur.portletmanager.latest"
+   type="telesur.portlets.interfaces.IPorletManagerLatest"
+   />
+
 </portlets>
