@@ -93,6 +93,7 @@ class Renderer(base.Renderer):
 
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
+        self.title = ''
 
     @property
     def available(self):
@@ -126,23 +127,41 @@ class Renderer(base.Renderer):
                 results = results[:limit]
         return results
 
+    @memoize
     def collection(self):
         context = None
         portal_state = getMultiAdapter((self.context, self.request),
                                        name=u'plone_portal_state')
+        context_state = getMultiAdapter((self.context, self.request),
+                                        name=u'plone_context_state')
+        esi_support = getMultiAdapter((self.context, self.request),
+                                        name=u'esi-support')
         portal = portal_state.portal()
-        
-        if (IPloneSiteRoot.providedBy(self.context) or
-            IATTopic.providedBy(self.context)):
-            self.kind = 'all'
-            collection = 'todas-las-noticias'
-            context = portal
+        is_sectionview = context_state.view_template_id() == 'section-view'
+        # Rendering with esi support, without context
+        if esi_support.enabled():
+            section = self.request.get('section', 'all')
+            if section == 'all':
+                collection = 'todas-las-noticias'
+                self.kind = 'all'
+                context = portal
+            else:
+                # TODO :validate again nitf sections
+                collection = section
+                self.kind = 'section'
+                context = portal.get('noticias', None)
+        else:
+            if (IPloneSiteRoot.providedBy(self.context) or
+                IATTopic.providedBy(self.context) or is_sectionview):
+                self.kind = 'all'
+                collection = 'todas-las-noticias'
+                context = portal
 
-        if INITF.providedBy(self.context):
-            self.kind = 'section'
-            normalizer = getUtility(IIDNormalizer)
-            collection = normalizer.normalize(self.context.section)
-            context = portal.get('noticias', None)
+            elif INITF.providedBy(self.context):
+                self.kind = 'section'
+                normalizer = getUtility(IIDNormalizer)
+                collection = normalizer.normalize(self.context.section)
+                context = portal.get('noticias', None)
 
         if not context:
             return None
@@ -150,6 +169,7 @@ class Renderer(base.Renderer):
         result = context.get(collection, None)
 
         if result is not None:
+            self.title = result.title
             sm = getSecurityManager()
             if not sm.checkPermission('View', result):
                 result = None
@@ -158,9 +178,8 @@ class Renderer(base.Renderer):
 
     def getHeader(self):
         text = u"Noticias recientes"
-        
         if self.kind == 'section':
-            text += u" de %s" % self.context.section
+            text += u" de %s" % self.title
 
         return text
 
